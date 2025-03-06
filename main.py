@@ -91,5 +91,8 @@ def task3() :
                 text = link.text.strip()
                 print(text)
                 f.write(text + "\n")  # Simpan ke file
+    
+
+# testing
 
 task3()
