@@ -1,8 +1,14 @@
 from flask import Flask
+from flask import render_template
 
 app = Flask(__name__)
 
 @app.route("/") # Decorator
+@app.route('/home')
+def home_page():
+    return render_template('main.html')
+
+@app.route("/hello") # Decorator
 def hello_world():
     return "<p>Hello, World anjay!</p>\n<h1>Hallo Saya Satria Belva</h1>"
 
@@ -66,4 +72,4 @@ def testing():
         """
 @app.route('/profile/<profil>') # Decorator
 def profil(profil):
-    return f'<h1>Account Profile</h1><br><h4>Nama Saya Adalah {profil}</h4>'
+    return f'<h1><i>Account Profile</i></h1><h4>Nama Saya Adalah {profil}</h4>'
