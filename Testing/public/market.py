@@ -7,7 +7,9 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0  # Nonaktifkan cache file statis
 @app.route("/") # Decorator
 @app.route('/home')
 def home_page():
-    return render_template('index.html')
+    tes = 'tes'
+    tesss = 'tesss'
+    return render_template('index.html', anjay=tes, anjay2 = tesss)
 
 @app.route("/testing") # Decorator
 def testing():

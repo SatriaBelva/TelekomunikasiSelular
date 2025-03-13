@@ -1,76 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Anggota Tim</title>
-    <link href="{{ url_for('static', filename='css/style.css') }}?v={{ config['SEND_FILE_MAX_AGE_DEFAULT'] }}" rel="stylesheet">
-</head>
-<body >
-    <nav class="sticky top-0 bg-blue-600 text-white p-4 shadow-md flex items-center">
-        <h1 class="text-xl font-bold mr-3.5">Dasboard</h1>
-        <h1 class="text-md font-bold ">
-            <a href="">Homepage</a>
-            <a href="">Dashboard</a>
-        </h1>
-    </nav>
-    <div class="flex justify-center w-full mt-3">
-        <div class="w-full max-w-4xl bg-white shadow-lg rounded-lg overflow-hidden ">
-            <div class="bg-blue-600 text-white text-lg font-semibold px-6 py-4">
-                Daftar Mahasiswa
-            </div>
-            <div class="overflow-x-auto">
-                
-                <table class="min-w-full border-collapse">
-                    <thead>
+{% extends '../templates/base/base.html' %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block anjay %}   
+<div class="flex justify-center w-full mt-3">
+    <div class="w-full max-w-4xl bg-white shadow-lg rounded-lg overflow-hidden ">
+        <div class="bg-blue-600 text-white text-lg font-semibold px-6 py-4">
+                Daftar Anggota Tim
+        </div>
+        <div class="overflow-x-auto">
+            <table class="min-w-full border-collapse">
+                <thead>
                         <tr class="bg-blue-500 text-white">
                             <th class="px-6 py-3 text-center uppercase font-semibold ">Nomor</th>
                             <th class="px-6 py-3 text-left uppercase font-semibold">Nama</th>
                             <th class="px-6 py-3 text-left uppercase font-semibold">NIM</th>
-                            <th class="px-6 py-3 text-left uppercase font-semibold">Prodi</th>
+                            <th class="px-6 py-3 text-left uppercase font-semibold">Dvisi</th>
+                            <th class="px-6 py-3 text-left uppercase font-semibold">Action</th>
                         </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200">
-                        <tr class="hover:bg-gray-100">
-                            <td class="px-6 py-4 text-center">1</td>
-                            <td class="px-6 py-4">Satria</td>
-                            <td class="px-6 py-4">222410100152</td>
-                            <td class="px-6 py-4">Sistem Informasi</td>
-                        </tr>
-                        <tr class="hover:bg-gray-100">
-                            <td class="px-6 py-4 text-center">2</td>
-                            <td class="px-6 py-4">Andini</td>
-                            <td class="px-6 py-4">222410101077</td>
-                            <td class="px-6 py-4">Sistem Informasi</td>
-                        </tr>
-                        <tr class="hover:bg-gray-100">
-                            <td class="px-6 py-4 text-center">3</td>
-                            <td class="px-6 py-4">Safila</td>
-                            <td class="px-6 py-4">222410101047</td>
-                            <td class="px-6 py-4">Sistem Informasi</td>
-                        </tr>
-                        <tr class="hover:bg-gray-100">
-                            <td class="px-6 py-4 text-center">4</td>
-                            <td class="px-6 py-4">Taqiyyah</td>
-                            <td class="px-6 py-4">222410101047</td>
-                            <td class="px-6 py-4">Sistem Informasi</td>
-                        </tr>
-                        <tr class="hover:bg-gray-100">
-                            <td class="px-6 py-4 text-center">5</td>
-                            <td class="px-6 py-4">Bagus</td>
-                            <td class="px-6 py-4">222410101047</td>
-                            <td class="px-6 py-4">Sistem Informasi</td>
-                        </tr>
-                        <tr class="hover:bg-gray-100">
-                            <td class="px-6 py-4 text-center">6</td>
-                            <td class="px-6 py-4">Dian</td>
-                            <td class="px-6 py-4">222410101047</td>
-                            <td class="px-6 py-4">Sistem Informasi</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    {% for item in items %}
+                    <tr class="hover:bg-gray-100">
+                        <td class="px-6 py-4 text-center">{{ loop.index }}</td>
+                        <td class="px-6 py-4">{{ item['nama'] }}</td>
+                        <td class="px-6 py-4">{{ item['NIM'] }}</td>
+                        <td class="px-6 py-4">{{ item['divisi'] }}</td>
+                        <td class="px-6 py-4">
+                            <button class="bg-amber-200 px-2 py-1 rounded-lg hover:scale-105 transition">Informasi</button>
+                            <button class="bg-green-300 px-2 py-1 rounded-lg hover:scale-105 transition">Data</button>
+                        </td>
+                    </tr>
+                    {% endfor %}   
+                </tbody>
+            </table>
         </div>
     </div>
-</body>
-</html>
+</div>
+{% endblock %}

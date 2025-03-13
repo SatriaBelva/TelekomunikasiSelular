@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+
+        {% endblock %}
+    </title>
+    <link href="{{ url_for('static', filename='css/style.css') }}?v={{ config['SEND_FILE_MAX_AGE_DEFAULT'] }}" rel="stylesheet">
+</head>
+<body >
+    <nav class="sticky top-0 bg-blue-600 text-white p-4 shadow-md flex items-center">
+        <h1 class="text-xl font-bold mr-3.5">Dasboard</h1>
+        <h1 class="text-md font-bold ">
+            <a href="">Homepage</a>
+            <a href="">Dashboard</a>
+        </h1>
+    </nav>
+    {% block anjay %}
+    
+    {% endblock %}
+</body>
+</html>
