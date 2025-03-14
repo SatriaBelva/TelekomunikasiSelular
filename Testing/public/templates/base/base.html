@@ -14,8 +14,9 @@
     <nav class="sticky top-0 bg-blue-600 text-white p-4 shadow-md flex items-center">
         <h1 class="text-xl font-bold mr-3.5">Dasboard</h1>
         <h1 class="text-md font-bold ">
-            <a href="{{ url_for('homepage') }}">Homepage</a>
-            <a href="{{ url_for('market') }}">Daftar Tim</a>
+            <a href="{{ url_for('routes.homepage') }}">Homepage</a>
+            <a href="{{ url_for('routes.market') }}">Daftar Tim</a>
+            <a href="{{ url_for('routes.testing') }}">Testing</a>
         </h1>
     </nav>
     {% block anjay %}
