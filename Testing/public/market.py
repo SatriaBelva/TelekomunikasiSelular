@@ -1,14 +1,26 @@
+import os
 from flask import Flask
 from flask import render_template
 
 app = Flask(__name__)
+
+db_path = os.path.join(app.instance_path, 'database')
+os.makedirs(db_path, exist_ok=True)  # Membuat folder secara otomatis jika belum ada
+
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0  # Nonaktifkan cache file statis
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/market.db'
+
+from model import db
+from model.models import Item
+
+db.init_app(app)
 
 @app.route("/") # Decorator
 @app.route('/home')
-def home_page():
-    tes = 'tes'
-    tesss = 'tesss'
+@app.route('/homepage')
+def homepage():
+    tes   = 'Ini data 1'
+    tesss = 'Ini data 2'
     return render_template('index.html', anjay=tes, anjay2 = tesss)
 
 @app.route("/testing") # Decorator
@@ -17,14 +29,15 @@ def testing():
 
 @app.route("/market") # Decorator
 def market():
-    items = [
-        {'nama' : 'Satria Belva Nararya', 'divisi' : 'BPH', 'NIM' : '222410101052'},
-        {'nama' : 'Taqiyyah Ardelia Pratiwi', 'divisi' : 'Kaderisasi', 'NIM' : '222410101052'},
-        {'nama' : 'Bagus Iman Huda', 'divisi' : 'Litbang', 'NIM' : '222410101052'},
-        {'nama' : 'Safila Elsa Vavilya', 'divisi' : 'BPH', 'NIM' : '222410101052'},
-        {'nama' : 'Felisita Dian Puspitasari', 'divisi' : 'BPH', 'NIM' : '222410101052'},
-        {'nama' : 'Andini Niswa Nabila', 'divisi' : 'PSDM', 'NIM' : '222410101052'},
-    ]
+    # items = [
+    #     {'nama' : 'Satria Belva Nararya', 'divisi' : 'BPH', 'NIM' : '222410101052'},
+    #     {'nama' : 'Taqiyyah Ardelia Pratiwi', 'divisi' : 'Kaderisasi', 'NIM' : '222410101052'},
+    #     {'nama' : 'Bagus Iman Huda', 'divisi' : 'Litbang', 'NIM' : '222410101052'},
+    #     {'nama' : 'Safila Elsa Vavilya', 'divisi' : 'BPH', 'NIM' : '222410101052'},
+    #     {'nama' : 'Felisita Dian Puspitasari', 'divisi' : 'BPH', 'NIM' : '222410101052'},
+    #     {'nama' : 'Andini Niswa Nabila', 'divisi' : 'PSDM', 'NIM' : '222410101052'},
+    # ]
+    items = Item.query.all()
     return render_template('market.html', items=items)
 
 @app.route("/hello") # Decorator
