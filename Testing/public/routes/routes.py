@@ -1,5 +1,5 @@
 from flask import render_template, Blueprint
-from model.models import Anggota
+from model.models import Anggota,Divisi,db,User
 
 routes = Blueprint('routes', __name__)
 
@@ -13,7 +13,8 @@ def homepage():
 
 @routes.route("/testing")
 def testing():
-    return render_template('tables.html')
+    divisi=Divisi.query.all()
+    return render_template('tables.html', divisi=divisi)
 
 @routes.route("/market")
 def market():

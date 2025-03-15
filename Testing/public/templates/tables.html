@@ -10,19 +10,19 @@
         <table class="min-w-full border-collapse">
             <thead>
                 <tr class="bg-blue-500 text-white">
-                    <th class="px-6 py-3 text-center uppercase font-semibold ">Nomor</th>
-                    <th class="px-6 py-3 text-left uppercase font-semibold">Nama</th>
-                    <th class="px-6 py-3 text-left uppercase font-semibold">NIM</th>
-                    <th class="px-6 py-3 text-left uppercase font-semibold">Prodi</th>
+                    <th class="px-6 py-3 text-center capitalize font-semibold ">Nomor</th>
+                    <th class="px-6 py-3 text-left capitalize font-semibold">Nama Divisi</th>
+                    <th class="px-6 py-3 text-left capitalize font-semibold">Daftar Anggota</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
+                {% for i in divisi %}
                 <tr class="hover:bg-gray-100">
-                    <td class="px-6 py-4 text-center">1</td>
-                    <td class="px-6 py-4">Satria</td>
-                    <td class="px-6 py-4">222410100152</td>
-                    <td class="px-6 py-4">Sistem Informasi</td>
+                    <td class="px-6 py-4 text-center">{{ loop.index }}</td>
+                    <td class="px-6 py-4">{{ i.nama }}</td>
+                    <td class="px-6 py-4 text-center">{{ i.anggota | map(attribute='nama') | join(', ') }}</td> 
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>

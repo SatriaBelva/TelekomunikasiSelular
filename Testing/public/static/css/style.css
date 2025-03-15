@@ -10,10 +10,8 @@
     --color-red-800: oklch(0.444 0.177 26.899);
     --color-amber-200: oklch(0.924 0.12 95.746);
     --color-amber-300: oklch(0.879 0.169 91.605);
-    --color-amber-700: oklch(0.555 0.163 48.998);
     --color-green-300: oklch(0.871 0.15 154.449);
     --color-cyan-600: oklch(0.609 0.126 221.723);
-    --color-blue-200: oklch(0.882 0.059 254.128);
     --color-blue-300: oklch(0.809 0.105 251.813);
     --color-blue-500: oklch(0.623 0.214 259.815);
     --color-blue-600: oklch(0.546 0.245 262.881);
@@ -1116,9 +1114,6 @@
   .bg-amber-300 {
     background-color: var(--color-amber-300);
   }
-  .bg-blue-200 {
-    background-color: var(--color-blue-200);
-  }
   .bg-blue-300 {
     background-color: var(--color-blue-300);
   }
@@ -1127,9 +1122,6 @@
   }
   .bg-blue-600 {
     background-color: var(--color-blue-600);
-  }
-  .bg-gray-100 {
-    background-color: var(--color-gray-100);
   }
   .bg-green-300 {
     background-color: var(--color-green-300);
@@ -1327,9 +1319,6 @@
   .p-5 {
     padding: calc(var(--spacing) * 5);
   }
-  .p-6 {
-    padding: calc(var(--spacing) * 6);
-  }
   .p-9 {
     padding: calc(var(--spacing) * 9);
   }
@@ -1490,9 +1479,6 @@
   }
   .\[color\:red\]\/50\! {
     color: color-mix(in oklab, red 50%, transparent) !important;
-  }
-  .text-amber-700 {
-    color: var(--color-amber-700);
   }
   .text-cyan-600 {
     color: var(--color-cyan-600);
