@@ -1,7 +1,6 @@
 from flask import render_template, redirect, url_for
 from model.models import User, db
 from forms import RegisterForm
-from werkzeug.security import generate_password_hash
 
 class AuthController:
     @staticmethod
@@ -18,5 +17,9 @@ class AuthController:
             db.session.add(user_to_create)
             db.session.commit()
             return redirect(url_for('routes.homepage'))  # Sesuaikan dengan blueprint routes
+        
+        if form.errors != {} : #Kalo gaada error dari validasinya
+            for err_msg in form.errors.values():
+                print(f"ERROR: {err_msg}")
         
         return render_template('register.html', form=form, register=register)
