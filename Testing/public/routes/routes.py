@@ -1,5 +1,6 @@
 from flask import render_template, Blueprint
 from model.models import Anggota,Divisi,db,User
+from forms import RegisterForm
 
 routes = Blueprint('routes', __name__)
 
@@ -9,17 +10,23 @@ routes = Blueprint('routes', __name__)
 def homepage():
     tes   = 'Ini data 1'
     tesss = 'Ini data 2'
-    return render_template('index.html', anjay=tes, anjay2=tesss)
+    return render_template('homepage.html', anjay=tes, anjay2=tesss)
 
 @routes.route("/testing")
 def testing():
     divisi=Divisi.query.all()
-    return render_template('tables.html', divisi=divisi)
+    return render_template('testing.html', divisi=divisi)
 
-@routes.route("/market")
-def market():
+@routes.route("/daftar_tim")
+def daftar_tim():
     items = Anggota.query.all()
-    return render_template('market.html', items=items)
+    return render_template('daftar_tim.html', items=items)
+
+@routes.route("/register")
+def register():
+    form = RegisterForm()
+    register = 'Register Account'
+    return render_template('register.html', form = form, register=register)
 
 @routes.route("/hello")
 def hello_world():

@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block anjay %}  
+<div class="min-h-screen bg-gray-100 flex flex-col items-center justify-center px-6 py-12">
+    <!-- Hero Section -->
+    <div class="text-center">
+        <h1 class="text-6xl font-extrabold text-gray-900 mb-4 animate-fade-in">Selamat Datang di Website Kami</h1>
+        <p class="text-lg text-gray-600 max-w-xl mx-auto">Temukan berbagai fitur menarik yang akan membantu Anda dalam berbagai kebutuhan digital.</p>
+        <a href="#features" class="mt-6 inline-block bg-amber-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-amber-600 transition">Jelajahi Sekarang</a>
+    </div>
+
+    <!-- Features Section -->
+    <div id="features" class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">
+        <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center text-center">
+            <div class="bg-blue-500 text-white p-4 rounded-full">
+                <i class="fas fa-bolt text-3xl"></i>
+            </div>
+            <h3 class="text-2xl font-semibold mt-4">Cepat & Responsif</h3>
+            <p class="text-gray-600 mt-2">Website kami dirancang untuk kecepatan dan kemudahan akses di semua perangkat.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center text-center">
+            <div class="bg-green-500 text-white p-4 rounded-full">
+                <i class="fas fa-lock text-3xl"></i>
+            </div>
+            <h3 class="text-2xl font-semibold mt-4">Keamanan Terjamin</h3>
+            <p class="text-gray-600 mt-2">Data Anda aman dengan enkripsi terbaik yang kami gunakan.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center text-center">
+            <div class="bg-red-500 text-white p-4 rounded-full">
+                <i class="fas fa-heart text-3xl"></i>
+            </div>
+            <h3 class="text-2xl font-semibold mt-4">User-Friendly</h3>
+            <p class="text-gray-600 mt-2">Tampilan yang mudah digunakan untuk semua kalangan pengguna.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
