@@ -1,6 +1,8 @@
-from flask import render_template, Blueprint
+from flask import render_template, Blueprint, redirect, url_for
 from model.models import Anggota,Divisi,db,User
 from forms import RegisterForm
+from controller import AuthController
+# from werkzeug.security import generate_password_hash
 
 routes = Blueprint('routes', __name__)
 
@@ -12,21 +14,19 @@ def homepage():
     tesss = 'Ini data 2'
     return render_template('homepage.html', anjay=tes, anjay2=tesss)
 
-@routes.route("/testing")
-def testing():
+@routes.route("/daftar_divisi")
+def daftar_divisi():
     divisi=Divisi.query.all()
-    return render_template('testing.html', divisi=divisi)
+    return render_template('daftar_divisi.html', divisi=divisi)
 
 @routes.route("/daftar_tim")
 def daftar_tim():
     items = Anggota.query.all()
     return render_template('daftar_tim.html', items=items)
 
-@routes.route("/register")
+@routes.route("/register", methods=['GET', 'POST'])
 def register():
-    form = RegisterForm()
-    register = 'Register Account'
-    return render_template('register.html', form = form, register=register)
+    return AuthController.register()
 
 @routes.route("/hello")
 def hello_world():
