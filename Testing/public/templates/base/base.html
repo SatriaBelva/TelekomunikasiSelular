@@ -20,6 +20,22 @@
             <a href="{{ url_for('routes.register') }}">Register</a>
         </h1>
     </nav>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            <div class="w-full max-w-md mx-auto mt-4 px-4 py-3 rounded-lg shadow-md 
+                        {% if category == 'success' %} bg-green-100 text-green-800 
+                        {% elif category == 'danger' %} bg-red-100 text-red-800 
+                        {% else %} bg-gray-100 text-gray-800 {% endif %}">
+                <div class="flex justify-between items-center">
+                    <span class="font-semibold">{{ message }}</span>
+                    <button class="text-xl font-bold leading-none" onclick="this.parentElement.parentElement.remove()">&times;</button>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
     {% block anjay %}
         
     {% endblock %}
