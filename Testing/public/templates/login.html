@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="{{ url_for('static', filename='css/style.css') }}?v={{ config['SEND_FILE_MAX_AGE_DEFAULT'] }}" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+    </style>
+</head>
+<body class="w-full min-h-screen flex justify-center items-center flex-col">
+    <img src="../static/images/logo_telkomsel.png" alt="logo_telkomsel" class="mt-[-40px]">
+    <h1 class="flex h-fit mb-[40px]" style="font-family: Inter; font-size: 32px; font-weight: 600;">Market Analysis</h1>
+    <h4 style="font-family: Inter; font-size: 24px; font-weight: 600;">Log In</h4>
+    <h6 class="text-sm mb-6" style="font-family: Inter; font-weight: 400;">Masukkan username dan password untuk Log In</h6>
+    <Form method="POST" class="flex flex-col space-y-4">
+        <div>
+            <!-- {{ form.username.label(class='block text-sm font-medium text-gray-700 mb-1') }} -->
+            {{ form.username(class='w-[400px] p-2 border rounded-lg focus:ring-2 focus:ring-blue-200', placeholder='Username') }}
+        </div>
+        <div>
+            <!-- {{ form.password1.label(class='block text-sm font-medium text-gray-700 mb-1') }} -->
+            {{ form.password1(class='w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-200', placeholder='Password') }}
+        </div>
+        <button type="submit" class="w-full bg-black h-[40px] text-white py-2 rounded-lg hover:bg-[#ED1E28] transition duration-300">Log In</button>
+    </Form>
+
+</body>
+
+</html>

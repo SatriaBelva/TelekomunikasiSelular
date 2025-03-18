@@ -1,6 +1,5 @@
 from flask import render_template, Blueprint, redirect, url_for
 from model.models import Anggota,Divisi,db,User
-from forms import RegisterForm
 from controller import AuthController
 # from werkzeug.security import generate_password_hash
 
@@ -23,6 +22,10 @@ def daftar_divisi():
 def daftar_tim():
     items = Anggota.query.all()
     return render_template('daftar_tim.html', items=items)
+
+@routes.route("/login")
+def login():
+    return AuthController.login()
 
 @routes.route("/register", methods=['GET', 'POST'])
 def register():

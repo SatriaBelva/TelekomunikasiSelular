@@ -15,12 +15,37 @@ class AuthController:
                 password_hashed = form.password1.data
             )
             db.session.add(user_to_create)
-            db.session.commit()
+            db.session.commit() 
+
+            # Tambahkan pesan sukses
+            flash('Your account has been created successfully!', category='success')
+
             return redirect(url_for('routes.homepage'))  # Sesuaikan dengan blueprint routes
+        
+        
+        if form.errors:
+            for field, err_msg in form.errors.items():
+                flash(f"{field}: {', '.join(err_msg)}", category='danger')
+        
+        return render_template('register.html', form=form, register=register)
+
+    def login():
+        form = RegisterForm()
+        register = 'Register Account'
+
+        if form.validate_on_submit():
+            user_to_create = User(
+                username=form.username.data,
+                email=form.email.data,
+                password_hashed = form.password1.data
+            )
+            db.session.add(user_to_create)
+            db.session.commit()
+            return redirect(url_for('routes.login'))  # Sesuaikan dengan blueprint routes
         
         if form.errors:
             for field, err_msg in form.errors.items():
                 flash(f"{field}: {', '.join(err_msg)}", category='danger')
 
         
-        return render_template('register.html', form=form, register=register)
+        return render_template('login.html', form=form, register=register)
