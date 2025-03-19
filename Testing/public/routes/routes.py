@@ -23,21 +23,14 @@ def daftar_tim():
     items = Anggota.query.all()
     return render_template('daftar_tim.html', items=items)
 
-@routes.route("/login")
-def login():
-    return AuthController.login()
 
 @routes.route("/register", methods=['GET', 'POST'])
 def register():
     return AuthController.register()
 
-@routes.route("/hello")
-def hello_world():
-    return "<p>Hello, World anjay!</p>\n<h1>Hallo Saya Satria Belva</h1>"
-
-@routes.route('/profile/<profil>')
-def profil(profil):
-    return f'<h1><i>Account Profile</i></h1><h4>Nama Saya Adalah {profil}</h4>'
+@routes.route("/login", methods=['GET', 'POST'])
+def login():
+    return AuthController.login()
 
 
 

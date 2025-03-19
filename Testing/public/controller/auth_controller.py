@@ -1,6 +1,7 @@
 from flask import render_template, redirect, url_for, flash
+from flask_login import login_user
+from forms import RegisterForm, LoginForm
 from model.models import User, db
-from forms import RegisterForm
 
 class AuthController:
     @staticmethod
@@ -10,42 +11,34 @@ class AuthController:
 
         if form.validate_on_submit():
             user_to_create = User(
-                username=form.username.data,
-                email=form.email.data,
-                password_hashed = form.password1.data
+                username    = form.username.data,
+                email       = form.email.data,
+                password    = form.password1.data
             )
             db.session.add(user_to_create)
             db.session.commit() 
 
             # Tambahkan pesan sukses
-            flash('Your account has been created successfully!', category='success')
+            flash('success: Your account has been created successfully!', category='success')
 
             return redirect(url_for('routes.homepage'))  # Sesuaikan dengan blueprint routes
-        
         
         if form.errors:
             for field, err_msg in form.errors.items():
                 flash(f"{field}: {', '.join(err_msg)}", category='danger')
         
         return render_template('register.html', form=form, register=register)
-
+    
+    @staticmethod
     def login():
-        form = RegisterForm()
-        register = 'Register Account'
+        form = LoginForm()
 
         if form.validate_on_submit():
-            user_to_create = User(
-                username=form.username.data,
-                email=form.email.data,
-                password_hashed = form.password1.data
-            )
-            db.session.add(user_to_create)
-            db.session.commit()
-            return redirect(url_for('routes.login'))  # Sesuaikan dengan blueprint routes
-        
-        if form.errors:
-            for field, err_msg in form.errors.items():
-                flash(f"{field}: {', '.join(err_msg)}", category='danger')
-
-        
-        return render_template('login.html', form=form, register=register)
+            attempted_user = User.query.filter_by(username=form.username.data).first()
+            if attempted_user and attempted_user.check_password_correction(attempted_password=form.password.data):
+                login_user(attempted_user)
+                flash(f'Success! You are logged in as : {attempted_user.username}', category='success')
+                return redirect(url_for('routes.homepage'))
+            else:
+                flash(f'Wrong Password are not match', category='danger')
+        return render_template('login.html', form=form)
