@@ -7,3 +7,5 @@ from flask_login import LoginManager
 db = SQLAlchemy()
 bcrypt = Bcrypt()  # Inisialisasi bcrypt di sini
 login_manager = LoginManager()  # Inisialisasi bcrypt di sini
+login_manager.login_view = 'routes.login'
+login_manager.login_message_category = 'info'
