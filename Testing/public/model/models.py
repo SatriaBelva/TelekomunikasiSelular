@@ -3,6 +3,9 @@ from flask_login import UserMixin
 
 @login_manager.user_loader
 def load_user(user_id):
+    print(f"load_user called with user_id: {user_id}")  # Debugging
+    if not user_id or not user_id.isdigit():  # Pastikan user_id adalah angka
+        return None
     return User.query.get(int(user_id))
 
 class Divisi(db.Model):

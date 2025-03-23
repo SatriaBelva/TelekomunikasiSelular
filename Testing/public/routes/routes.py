@@ -1,10 +1,14 @@
-from flask import render_template, Blueprint, redirect, url_for
+from flask import render_template, Blueprint, redirect, url_for, session
 from flask_login import login_required
 from model.models import Anggota,Divisi,db,User
 from controller import AuthController
 # from werkzeug.security import generate_password_hash
 
 routes = Blueprint('routes', __name__)
+
+@routes.route('/debug_session')
+def debug_session():
+    return f"User ID in session: {session.get('_user_id', 'Not Logged In')}"
 
 @routes.route("/")
 @routes.route('/home')
