@@ -23,7 +23,6 @@
                     <a href="#" class="hover:text-gray-300 transition ">Welcome @{{ current_user.username }}</a>
                     <a href="{{ url_for('routes.logout') }}" class="hover:text-gray-300 transition">Log Out</a>
                 {% else %}
-                    <a href="{{ url_for('routes.register') }}" class="hover:text-gray-300 transition">Register</a>
                     <a href="{{ url_for('routes.login') }}" class="hover:text-gray-300 transition">Log In</a>
                 {% endif %}
             </div>

@@ -35,8 +35,8 @@ def daftar_tim():
     items = Anggota.query.all()
     return render_template('daftar_tim.html', items=items)
 
-@routes.route("/register", methods=['GET', 'POST'])
-def register():
+@routes.route("/b22aa7ca332d13fd344edbb8732b515d0b3596e7da4a955a6cb491d88df9b6c24e4980af8d49a749c7ab3cc6ddb42bafdb8", methods=['GET', 'POST'])
+def b22aa7ca332d13fd344edbb8732b515d0b3596e7da4a955a6cb491d88df9b6c24e4980af8d49a749c7ab3cc6ddb42bafdb8():
     return AuthController.register()
 
 @routes.route("/login", methods=['GET', 'POST'])
