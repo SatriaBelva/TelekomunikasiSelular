@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, get_flashed_messages
 from flask_login import login_user, logout_user
 from forms import RegisterForm, LoginForm
 from model.models import User, db
@@ -41,14 +41,14 @@ class AuthController:
             attempted_user = User.query.filter_by(username=form.username.data).first()
             if attempted_user and attempted_user.check_password_correction(attempted_password=form.password.data):
                 login_user(attempted_user)
-                flash(f'Success! You are logged in as : {attempted_user.username}', category='success')
+                flash(f'Success: You are logged in as {attempted_user.username}', category='success')
                 return redirect(url_for('routes.homepage'))
             else:
-                flash(f'Wrong Password are not match', category='danger')
+                flash('Error: Username or password incorrect', category='danger')
         return render_template('login.html', form=form)
     
     @staticmethod
     def logout():
         logout_user()
-        flash('You have been logout', category='info')
+        flash('Info: You have been logged out', category='info')
         return redirect(url_for('routes.login'))
