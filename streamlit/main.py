@@ -1,6 +1,24 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+from utils import clearTerminal, testingCheckbox, pilihanDivisi, organizationSelection
+
+st.markdown("""
+    <style>
+        #MainMenu { visibility: hidden; }
+        @keyframes rgbHeader {
+            0% { background-color: #FE00FE; }
+            25% { background-color: #7F78FF; }
+            50% { background-color: #01A5F8; }
+            75% { background-color: #00E0FF; }
+            100% { background-color: #151719; }
+        }
+
+        .stAppHeader {
+            animation: rgbHeader 5s infinite;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 st.title("Ini Adalah Project Telkomsel")
 st.header("Selamat Datang di Project Telkomsel")
@@ -50,7 +68,43 @@ himasif = pd.DataFrame({
     'PSDM'       : ['Eva', 'Dewi', 'Nathan', 'Felix', 'Ziza', 'Viola', 'Derrick', 'Iklina', 'Kanina']
 })
 
-st.table(himasif)
 st.write(himasif)
+st.table(himasif)
 st.dataframe(himasif)
 
+st.image("assets/tes.png",width=400, caption="Ini Adalah Logo HIMASIF", use_container_width=True)
+st.video("assets/VID-20241025-WA0013.mp4")
+
+st.checkbox(label='Ini adalah checkbox 1', help='This Checkbox will do something in your terminal', value=True, on_change=testingCheckbox, key='tes')
+st.checkbox(label='Ini adalah checkbox 2', help='This Clear The Terminal', value=False, on_change=clearTerminal, key='clearTerminal')
+
+st.radio(
+    label='Silahkan Pilih Salah Satu Divisi Di Bawah Ini', 
+    options=('Kaderisasi', 'Litbang', 'Humas', 'PSDM', 'Mediatek'), 
+    captions=('Pengkaderan anggota', 'Penelitian & Pengembangan', 'Hubungan Masyarakat', 'Pengembangan Sumber Daya Mahasiswa', 'Media & Teknologi'),
+    help='Choose One of This Divisions Below',
+    key='divisi',
+    on_change=pilihanDivisi,
+    index=3
+)
+
+st.selectbox(
+    label='Silahkan Pilih Salah Satu Organisasi Di Bawah Ini', 
+    options=('BEM', 'HIMATIF', 'HMIF', 'HIMASIF', 'BPM'), 
+    placeholder='"Choose an option',
+    help='Choose One of This Organization Below',
+    on_change=organizationSelection,
+    key='organisasi',
+    label_visibility='visible',
+    index=3
+)
+
+st.button(
+    label='Click This Button To Clear The Terminal',
+    on_click=clearTerminal,
+    key='clearTerminalButton',
+    icon="🗑️",
+    help='Click This Button To Automaticly Clear Your Terminal',
+    use_container_width=True,
+    type='secondary',
+)
