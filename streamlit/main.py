@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-from utils import clearTerminal, testingCheckbox, pilihanDivisi, organizationSelection
+import datetime 
+from utils import clearTerminal, testingCheckbox, pilihanDivisi, organizationSelection, previewUploadedFile, usernameAndPassword
 
 st.markdown("""
     <style>
@@ -108,3 +109,72 @@ st.button(
     use_container_width=True,
     type='secondary',
 )
+
+st.title('Upload CV Anda')
+st.markdown('---')
+st.file_uploader(
+    label='Upload CV Anda',
+    type=['pdf','jpg','png','heic'],
+    help='Apabila Anda mendaftar organisasi maka perlu mengupload CV',
+    accept_multiple_files=True,
+    on_change=previewUploadedFile,
+    key='uploadedFile'
+)   
+
+st.markdown('---')
+
+st.slider(
+    label='Silahkan Pilih Nilai Angka Anda',
+    min_value=0.0,
+    max_value=100.0,
+    step=0.5,
+    value=(0.0,20.0),
+    key='nilaiAngka',
+    help='Silahkan Pilih Nilai Angka Anda'
+)
+
+# Contoh yang Salah
+
+st.text_input(
+    label='Silahkan Masukkan Username Anda',
+    key='username',
+    help='Silahkan Masukkan Username Anda',
+    type='default',
+    max_chars=30,
+    placeholder='contoh : @satriabelva',
+)
+
+st.text_input(
+    label='Silahkan Masukkan Password Anda',
+    key='password',
+    help='Silahkan Masukkan Password Anda',
+    type='password',
+)
+
+st.date_input(
+    label='Silahkan Pilih Tanggal Lahir Anda',
+    key='tanggalLahir',
+    help='Silahkan Pilih Tanggal Lahir Anda',
+    format='DD/MM/YYYY',
+    max_value=datetime.date.today(),
+    min_value=datetime.date(1925, 6, 23) 
+)
+
+st.text_area(
+    label='Silahkan Masukkan Deskripsi Anda',
+    key='deskripsi',
+    help='Silahkan Masukkan Deskripsi Anda',
+    placeholder='Deskripsikan Diri Anda Sedetail Mungkin'
+)
+
+st.button(
+    label='Submit',
+    on_click=usernameAndPassword,
+    key='usernameAndPasswordSubmitButton',
+    icon="📜",
+    help='Click This Button To Submit Your Account',
+    use_container_width=True,
+    type='secondary',
+)
+
+

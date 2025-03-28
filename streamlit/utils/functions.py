@@ -21,3 +21,27 @@ def organizationSelection():
     """Menampilkan organisasi yang dipilih oleh pengguna."""
     organisasi = st.session_state.get("organisasi", "")
     print(f'Anda Memilih organisasi {organisasi}')
+
+def previewUploadedFile():
+    file = st.session_state.get("uploadedFile")
+    if file:
+        for file in file:
+            # if file.name
+            print(f"""file id : {file.file_id}\n
+                      Judul : {file.name}\n
+                      Tipe : {file.type}\n
+                      Ukuran : {file.size} Byte\n""") 
+            
+def usernameAndPassword():
+    button = st.session_state.get('usernameAndPasswordSubmitButton')
+    username = st.session_state.get('username')
+    password = st.session_state.get('password')
+    tanggalLahir = st.session_state.get('tanggalLahir')
+    deskripsi = st.session_state.get('deskripsi')
+
+    if username and password and tanggalLahir and deskripsi:
+        day = tanggalLahir.day
+        month = tanggalLahir.strftime("%B")  # Nama bulan dalam bahasa Inggris
+        year = tanggalLahir.year
+        formatted_date = f"{day} {month} {year}"
+        print(f"Username : {username}\nPassword : {password}\nTTL : {formatted_date}\nDeskripsi Diri : {deskripsi}\n")
