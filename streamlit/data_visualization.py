@@ -52,14 +52,15 @@ if files :
                    tanggalrapi = dateConverter(data['DATE'])
                    tanggalmess = data['DATE'].values 
                    index = np.arange(len(tanggalrapi))
+                   
                    plt.xticks(index, tanggalrapi)
                    plt.gcf().autofmt_xdate()
-                   plt.plot(index, item)
+                   plt.plot(index, item, marker="o", linestyle="--", label=option)
                    plt.xlabel("Tanggal Pembelian", loc='center', labelpad=15.0)
                    plt.ylabel(f'Jumlah {option} Terjual', loc='center', labelpad=15.0)
                    plt.title(label=f'{option} Chart')
                    plt.grid(visible=True)
-                   plt.legend()
+                   plt.legend(title="Legend")
 
                    table = pt(["Tanggal (Rapi)", "Tanggal Ngga Rapi", option])
                    for x, y, z in zip(tanggalrapi, tanggalmess, list(item)):
