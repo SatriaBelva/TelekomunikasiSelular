@@ -45,3 +45,11 @@ def usernameAndPassword():
         year = tanggalLahir.year
         formatted_date = f"{day} {month} {year}"
         print(f"Username : {username}\nPassword : {password}\nTTL : {formatted_date}\nDeskripsi Diri : {deskripsi}\n")
+
+def registration():
+    tes = st.session_state.get('registration')
+    if tes:
+        # st.write(f"Data dari session_state: {tes}")  # Menampilkan di UI Streamlit
+        print(tes)  # Untuk debugging di terminal
+    else:
+        st.warning("Belum ada data registrasi.")

@@ -2,7 +2,8 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import datetime 
-from utils import clearTerminal, testingCheckbox, pilihanDivisi, organizationSelection, previewUploadedFile, usernameAndPassword
+from matplotlib import pyplot as plt
+from utils import clearTerminal, testingCheckbox, pilihanDivisi, organizationSelection, previewUploadedFile, usernameAndPassword, registration
 
 st.markdown("""
     <style>
@@ -182,20 +183,63 @@ st.button(
 st.markdown("<h1 style='text-align : center;'>User Registration</h1>", unsafe_allow_html=True)
 with st.form(key='form2', clear_on_submit=False, enter_to_submit=False) :
     col1, col2, col3 = st.columns(spec=3)
-    firstname = col1.text_input(label='Firstname')
-    surname = col2.text_input(label='Surname')
-    lastname = col3.text_input(label='Lastname')
-    username = st.text_input(label='Username', help='username harus unik')
-    st.date_input(label='Silahkan Pilih Tanggal Lahir Anda',help='Silahkan Pilih Tanggal Lahir Anda',format='DD/MM/YYYY',max_value=datetime.date.today(),min_value=datetime.date(1925, 6, 23), value=datetime.date(2002, 8, 31) )
-    password1 = st.text_input(label='Password', type='password', help='password boleh berbeda')
-    password2 = st.text_input(label='Confirm Password', type='password')
-    submitButton = st.form_submit_button(label='Submit', use_container_width=True, type='secondary' )
+    firstname    = col1.text_input(label='Firstname')
+    surname      = col2.text_input(label='Surname')
+    lastname     = col3.text_input(label='Lastname')
+    username     = st.text_input(label='Username', help='username harus unik')
+    birthdate    = st.date_input(label='Silahkan Pilih Tanggal Lahir Anda',help='Silahkan Pilih Tanggal Lahir Anda',format='DD/MM/YYYY',max_value=datetime.date.today(),min_value=datetime.date(1925, 6, 23), value=datetime.date(2002, 8, 31) )
+    password1    = st.text_input(label='Password', type='password', help='password boleh berbeda')
+    password2    = st.text_input(label='Confirm Password', type='password')
+    submitButton = st.form_submit_button(label='Submit', use_container_width=True, type='secondary', on_click=registration )
     if submitButton :
         if firstname == "" or surname == "" or lastname == "" :
             st.warning(body="Please Fill in Your Name", icon='⚠️')
         elif username == "" :
             st.error(body="Goblog", icon='🧠')
+        elif password1 == "":
+            st.warning(body="Password Tidak Boleh Kosong", icon='⚠️')
+        elif password2 == "":
+            st.warning(body="Tolong Konfirmasi Password Anda", icon='⚠️')
         elif password1 != password2 :
             st.warning(body="Password Tidak Sama", icon='⚠️')
         else : 
-            st.success(body='Akun Berhasil Dibuat', icon='🔥')
+            # Simpan ke session_state sebelum memanggil fungsi
+            st.session_state['registration'] = {
+                "firstname": firstname,
+                "surname": surname,
+                "lastname": lastname,
+                "username": username,
+                "birthdate": birthdate,
+                "password": password1
+            }
+            st.success(body="Akun Berhasil Dibuat!", icon='🔥')
+    registration()
+
+x = np.linspace(0,10,100)
+y = np.array([1,2,3,4,5,6,7,8,9,10])
+z = np.array([1,2,3,4,5,6,7,8,9,10])
+opt = st.sidebar.radio(label='Select Any Graph', options=('Line', 'Bar', 'H-Bar'))
+if opt == "Line": 
+    st.markdown("<h1 style='text-align : center;'>Line Chart</h1>", unsafe_allow_html=True)
+    fig=plt.figure()
+    plt.style.use('https://github.com/dhaitz/matplotlib-stylesheets/raw/master/pitayasmoothie-dark.mplstyle')
+    plt.plot(x, np.cos(x), '--')
+    plt.plot(x, np.sin(x))
+    st.write(fig)
+elif opt == "Bar" :
+    st.markdown("<h1 style='text-align : center;'>Bar Chart</h1>", unsafe_allow_html=True)
+    fig=plt.figure()
+    plt.style.use('https://github.com/dhaitz/matplotlib-stylesheets/raw/master/pitayasmoothie-dark.mplstyle')
+    plt.bar(y,y*10)
+    plt.bar(z,z*5)
+    st.write(fig)
+else :
+    st.markdown("<h1 style='text-align : center;'>Bar Chart</h1>", unsafe_allow_html=True)
+    fig=plt.figure()
+    plt.style.use('https://github.com/dhaitz/matplotlib-stylesheets/raw/master/pitayasmoothie-dark.mplstyle')
+    plt.barh(y*10,y)
+    st.write(fig)
+
+st.markdown('---')
+
+
