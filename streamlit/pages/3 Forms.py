@@ -11,7 +11,7 @@ from utils import clearTerminal, testingCheckbox, pilihanDivisi, organizationSel
 st.title("Forms Element")
 st.text("Pada Page ini kita akan belajar mengenai cara membuat dashboard data menggunakan Components yang ada di streamlit dengan sedikit bantuan dari library pandas")
 
-# Contoh Yang Benar 
+# Contoh 1
 st.markdown("<h1 style='text-align : center;'>User Registration</h1>", unsafe_allow_html=True)
 with st.form(key='form2', clear_on_submit=False, enter_to_submit=False) : # Harus menggunakan with agar aplikasi tidak rerun setiap ada perubahan di widgetnya dan hanya direrun setelah form disubmit melalui submit button     
     col1, col2, col3 = st.columns(spec=3)
@@ -46,3 +46,36 @@ with st.form(key='form2', clear_on_submit=False, enter_to_submit=False) : # Haru
             }
             st.success(body="Akun Berhasil Dibuat!", icon='🔥')
             registration()
+
+# Contoh 2
+form_values = {
+    "Nama" : None,
+    "Divisi" : None,
+    "Periode" : None,
+    "Jenis Kelamin" : None
+}
+
+with st.form(key='form1', clear_on_submit=False, enter_to_submit=False) :
+    col1, col2, col3 = st.columns(spec=3)
+    form_values['Nama']          = col1.text_input(label='Nama')
+    form_values['Divisi']        = col2.selectbox(label='Divisi', options=['Choose an option', 'Humas', 'Kaderisasi', 'Litbang', 'Mediatek', 'PSDM'])
+    form_values['Periode']       = col3.selectbox(label='Periode', options=['Choose an option', 2022, 2023, 2024])
+    form_values['Jenis Kelamin'] = st.selectbox(label='Jenis Kelamin', options=['Choose an option', 'Laki-Laki', 'Perempuan'])
+
+    submitButton = st.form_submit_button(label='Submit', use_container_width=True, type='secondary')
+    if submitButton :
+        if not all(form_values.values()) :
+            st.error(body="Please Fill all of the fields", icon='⚠️')
+        elif form_values['Divisi'] == 'Choose an option' :
+            st.warning(body="Silahkan Pilih Divisi", icon='😡')
+        elif form_values['Periode'] == 'Choose an option' :
+            st.warning(body="Silahkan Pilih Periode Kamu", icon='😡')
+        elif form_values['Jenis Kelamin'] == 'Choose an option' :
+            st.warning(body="Silahkan Pilih Jenis Kelamin Kamu", icon='😡')
+        else :
+            st.balloons()    
+            st.write("### Anngota Info")
+            for (key,kontol) in form_values.items() :
+                st.write(f'{key} : {kontol}')
+
+                                         
