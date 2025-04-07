@@ -7,6 +7,7 @@ import os
 from config import DB_CONFIG
 from matplotlib import pyplot as plt
 
+st.set_page_config(page_title='Data', page_icon='🔥', layout='wide', menu_items={"Get help": 'mailto:satriabelvanararyan@gmail.com', 'About' : 'Made by Satria Belva Nararya'})
 st.title("Data Element")
 st.text("Pada Page ini kita akan belajar mengenai cara membuat dashboard data menggunakan Components yang ada di streamlit dengan sedikit bantuan dari library pandas")
 

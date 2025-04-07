@@ -75,7 +75,7 @@ with st.form(key='form1', clear_on_submit=False, enter_to_submit=False) :
         else :
             st.balloons()    
             st.write("### Anngota Info")
-            for (key,kontol) in form_values.items() :
-                st.write(f'{key} : {kontol}')
+            for (key,values) in form_values.items() :
+                st.write(f'{key} : {values}')
 
                                          
