@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 import datetime 
 import os
-from config import DB_CONFIG
 from matplotlib import pyplot as plt
 from utils import clearTerminal, testingCheckbox, pilihanDivisi, organizationSelection, previewUploadedFile, usernameAndPassword, registration
 
