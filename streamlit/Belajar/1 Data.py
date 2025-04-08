@@ -6,6 +6,7 @@ import mysql.connector
 import os
 from config import DB_CONFIG
 from matplotlib import pyplot as plt
+from utils.database import get_akun_data, get_kontak_data
 
 st.set_page_config(page_title='Data', page_icon='🔥', layout='wide', menu_items={"Get help": 'mailto:satriabelvanararyan@gmail.com', 'About' : 'Made by Satria Belva Nararya'})
 st.title("Data Element")
@@ -53,3 +54,13 @@ json = {
 
 st.json(json)
 st.divider()
+
+akun = get_akun_data()
+kontak = get_kontak_data()
+
+for row in akun.itertuples():
+    st.write(f"{row.email} has a :{row.password}:")
+
+for i in kontak.itertuples():
+    st.write(f"{i.Owner} Memiliki Nomor Telepon : {i.NomorHP}")
+
