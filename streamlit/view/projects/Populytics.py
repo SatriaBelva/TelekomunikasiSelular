@@ -3,6 +3,9 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import os as os
+import time
+
+st.json(st.experimental_user)
 
 listKecamatan = [
     "Search Kecamatan", "Ajung", "Ambulu", "Arjasa", "Balung", "Bangsalsari", "Gumukmas",
@@ -27,8 +30,12 @@ with colKecamatan:
         # st.warning("Tolong Pilih Kecamatan")
         pass
     else:
-        st.session_state.kecamatan = kecamatan 
-        index_kecamatan = listKecamatan.index(st.session_state.get("kecamatan"))
+        with st.spinner("Wait for it...", show_time=True):
+            time.sleep(2)
+            st.session_state.kecamatan = kecamatan 
+            index_kecamatan = listKecamatan.index(st.session_state.get("kecamatan"))
+        # st.session_state.kecamatan = kecamatan 
+        # index_kecamatan = listKecamatan.index(st.session_state.get("kecamatan"))
 
 with colDesa :
     desa = st.selectbox(
