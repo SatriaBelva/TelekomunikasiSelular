@@ -6,6 +6,8 @@ import os
 from matplotlib import pyplot as plt
 from utils import clearTerminal, testingCheckbox, pilihanDivisi, organizationSelection, previewUploadedFile, usernameAndPassword, registration
 
+st.set_page_config(layout='wide', menu_items={"Get help": 'mailto:satriabelvanararyan@gmail.com', 'About' : 'Made by Satria Belva Nararya'})
+
 Penampungan     = st.Page("Belajar/0 Penampungan.py", title="Dashboard", icon=":material/dashboard:")
 Data            = st.Page("Belajar/1 Data.py", title="Data Component", icon=":material/folder_open:")
 Charts          = st.Page("Belajar/2 Charts.py", title="Charts Component", icon=":material/signal_cellular_alt:")

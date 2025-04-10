@@ -4,8 +4,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os as os
 
-st.set_page_config(page_title='Charts', layout='wide', menu_items={"Get help": 'mailto:satriabelvanararyan@gmail.com', 'About' : 'Made by Satria Belva Nararya'})
-
 listKecamatan = [
     "Search Kecamatan", "Ajung", "Ambulu", "Arjasa", "Balung", "Bangsalsari", "Gumukmas",
     "Jelbuk", "Jenggawah", "Jombang", "Kalisat", "Kaliwates", "Kencong", "Ledokombo",

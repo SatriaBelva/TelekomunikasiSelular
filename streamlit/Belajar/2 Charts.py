@@ -7,7 +7,6 @@ import os
 from config import DB_CONFIG
 from matplotlib import pyplot as plt
 
-st.set_page_config(page_title='Charts', layout='centered', menu_items={"Get help": 'mailto:satriabelvanararyan@gmail.com', 'About' : 'Made by Satria Belva Nararya'})
 st.title("Charts Element")
 st.text("Pada Page ini kita akan belajar mengenai cara membuat Grafik Data menggunakan Components yang ada di streamlit dengan sedikit bantuan dari library pandas dan numpy")
 

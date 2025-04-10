@@ -1,5 +1,4 @@
 import streamlit as st
-st.set_page_config(page_title='Data', page_icon='🔥', layout='wide', menu_items={"Get help": 'mailto:satriabelvanararyan@gmail.com', 'About' : 'Made by Satria Belva Nararya'})
 
 st.title("Database Connection (mySQL)")
 st.text("Pada Page ini kita akan belajar mengenai cara membuat koneksi ke database khususnya ke mySQL\nBerikut adalah caranya :")
