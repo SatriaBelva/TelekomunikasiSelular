@@ -12,6 +12,10 @@ listKecamatan = [
     "Sumbersari", "Tanggul", "Tempurejo", "Umbulsari", "Wuluhan"
 ]
 
+st.session_state.kecamatan = "Search Kecamatan"
+index_kecamatan = None
+
+# Selectbox For Kecamatan and Desa
 colKecamatan, colDesa, colEmpty= st.columns([0.25, 0.25, 0.5])
 with colKecamatan:
     kecamatan = st.selectbox(
@@ -37,19 +41,21 @@ with colDesa :
         pass
     else:
         st.session_state.desa = desa
-    
+
+# Div For Map and Recomendation
 colMap, colText = st.columns([0.65, 0.35])
 with colMap :
     st.map()
 with colText :
-    if 'kecamatan' in st.session_state:
+    if st.session_state.kecamatan != "Search Kecamatan":
         with st.container(border=True, height=500):
             st.title(f"Kec. {st.session_state.kecamatan}")
-            st.caption('Indeks Pembangunan Manusia tergolong tinggi')
+            st.caption(f'Indeks Pembangunan Manusia tergolong tinggi')
             st.write(f'Rekomendasi :\n\nLorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.')
-    else:
+    elif st.session_state.kecamatan == "Search Kecamatan":
         st.error("Belum ada kecamatan dipilih")
 
+# Div For Total Population Graph and It's Metric
 colGraph, colMetrics = st.columns([0.65, 0.35], vertical_alignment='top')
 with colGraph :
     jumlah_penduduk = pd.DataFrame({
@@ -65,35 +71,44 @@ with colGraph :
     )
 with colMetrics :
     # with st.container(border=True, height=500) :
-    st.metric(label=f"Jumlah Penduduk Kecamatan {st.session_state['kecamatan']}", value=f'{jumlah_penduduk['Penduduk'][index_kecamatan]:,}', delta=f'1000', delta_color='normal', border=True)
-    st.metric(label=f"Jumlah KK Kecamatan {st.session_state['kecamatan']}", value = f"{jumlah_penduduk['Penduduk'][index_kecamatan] - 5000:,}", delta=f'1000', delta_color='normal', border=True)
+    if st.session_state.kecamatan == "Search Kecamatan" and index_kecamatan == None: 
+        st.warning("Silahkan Pilih Kecamatan Terlebih dahulu")
+    else :
+        st.metric(label=f"Jumlah Penduduk Kecamatan {st.session_state['kecamatan']}", value=f'{jumlah_penduduk['Penduduk'][index_kecamatan]:,}', delta=f'1000', delta_color='normal', border=True)
+        st.metric(label=f"Jumlah KK Kecamatan {st.session_state['kecamatan']}", value = f"{jumlah_penduduk['Penduduk'][index_kecamatan] - 5000:,}", delta=f'1000', delta_color='normal', border=True)
 
+# Div For Pendidikan and Pekerjaan Metric
 colPendidikan, colPekerjaan = st.columns(2, vertical_alignment='top')
 with colPendidikan :
-    st.header("Pendidikan")
-    st.divider()
-    pendidikanGraph, pendidikanMetric = st.columns(2)
-    with pendidikanGraph :
-        chart_data = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
-        st.area_chart(chart_data, height=408.667)
-    with pendidikanMetric :
-        st.metric(label=f"Jumlah Penduduk Tamatan SD", value=f'{jumlah_penduduk['Penduduk'][index_kecamatan]:,}', delta=f'39.11%', delta_color='normal')
-        st.metric(label=f"Jumlah Penduduk Tamatan SLTP", value = f"{jumlah_penduduk['Penduduk'][index_kecamatan] - 5000:,}", delta=f'-28.02%', delta_color='normal')
-        st.metric(label=f"Jumlah Penduduk Tamatan SLTA", value = f"{jumlah_penduduk['Penduduk'][index_kecamatan] - 5000:,}", delta=f'23.13%', delta_color='normal')
+        st.header("Pendidikan")
+        st.divider()
 with colPekerjaan :
-    st.header("Pekerjaan")
-    st.divider()
-    pendidikanGraph, pendidikanMetric = st.columns(2)
-    with pendidikanGraph :
-        chart_data = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
-        st.area_chart(chart_data, height=408.667)
-    with pendidikanMetric :
-        st.metric(label=f"Nelayan", value=f'{jumlah_penduduk['Penduduk'][index_kecamatan]:,}', delta=f'39.11%', delta_color='normal')
-        st.metric(label=f"Petani", value = f"{jumlah_penduduk['Penduduk'][index_kecamatan] - 5000:,}", delta=f'-28.02%', delta_color='normal')
-        st.metric(label=f"Perawat", value = f"{jumlah_penduduk['Penduduk'][index_kecamatan] - 5000:,}", delta=f'23.13%', delta_color='normal')
+        st.header("Pekerjaan")
+        st.divider()
 
-# listStatus = [st.badge("Success", icon=":material/check:", color="green"), st.badge("Gagal", icon=":material/check:", color="red")]
-# Buat DataFrame
+if st.session_state.kecamatan == "Search Kecamatan" and index_kecamatan == None: 
+    st.warning("Silahkan Pilih Kecamatan Terlebih dahulu")
+else :
+    with colPendidikan :
+        pendidikanGraph, pendidikanMetric = st.columns(2)
+        with pendidikanGraph :
+            chart_data = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
+            st.area_chart(chart_data, height=408.667)
+        with pendidikanMetric :
+            st.metric(label=f"Jumlah Penduduk Tamatan SD", value=f'{jumlah_penduduk['Penduduk'][index_kecamatan]:,}', delta=f'39.11%', delta_color='normal')
+            st.metric(label=f"Jumlah Penduduk Tamatan SLTP", value = f"{jumlah_penduduk['Penduduk'][index_kecamatan] - 5000:,}", delta=f'-28.02%', delta_color='normal')
+            st.metric(label=f"Jumlah Penduduk Tamatan SLTA", value = f"{jumlah_penduduk['Penduduk'][index_kecamatan] - 5000:,}", delta=f'23.13%', delta_color='normal')
+    with colPekerjaan :
+        pendidikanGraph, pendidikanMetric = st.columns(2)
+        with pendidikanGraph :
+            chart_data = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
+            st.area_chart(chart_data, height=408.667)
+        with pendidikanMetric :
+            st.metric(label=f"Nelayan", value=f'{jumlah_penduduk['Penduduk'][index_kecamatan]:,}', delta=f'39.11%', delta_color='normal')
+            st.metric(label=f"Petani", value = f"{jumlah_penduduk['Penduduk'][index_kecamatan] - 5000:,}", delta=f'-28.02%', delta_color='normal')
+            st.metric(label=f"Perawat", value = f"{jumlah_penduduk['Penduduk'][index_kecamatan] - 5000:,}", delta=f'23.13%', delta_color='normal')
+
+# Div For DataFrame Table
 data = pd.DataFrame({
     'Kecamatan': listKecamatan,
     'Penduduk': np.random.randint(5000, 25000, size=len(listKecamatan)),
@@ -101,24 +116,19 @@ data = pd.DataFrame({
     'Status': ['Gagal'] * len(listKecamatan)
 })
 
-# Pagination setup
 rows_per_page = 10
 total_pages = len(data) // rows_per_page + (1 if len(data) % rows_per_page > 0 else 0)
 
 if 'page' not in st.session_state:
     st.session_state.page = 1
 
-# Ambil data sesuai halaman
 start_idx = (st.session_state.page - 1) * rows_per_page
 end_idx = start_idx + rows_per_page
 current_data = data.iloc[start_idx:end_idx]
 
-# Tampilkan data slice
 st.dataframe(current_data, use_container_width=True)
 
-# Navigasi halaman (di bawah tabel)
 col1, col2, col3, col4, col5 = st.columns(5)
-
 with col1:
     pass
 with col2:

@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os as os
 
+st.session_state.kecamatan = "Search Kecamatan"
 
 listKecamatan = [
     "Search Kecamatan", "Ajung", "Ambulu", "Arjasa", "Balung", "Bangsalsari", "Gumukmas",
@@ -43,7 +44,7 @@ colMap, colText = st.columns([0.65, 0.35])
 with colMap :
     st.map()
 with colText :
-    if 'kecamatan' in st.session_state:
+    if st.session_state.kecamatan != "Search Kecamatan":
         with st.container(border=True, height=500):
             st.title(f"Kec. {st.session_state.kecamatan}")
             st.caption('Indeks Pembangunan Manusia tergolong tinggi')
@@ -65,7 +66,7 @@ with st.container(border=True) :
             height=500
         )
 
-# Buat DataFrame
+# Div For DataFrame Table
 data = pd.DataFrame({
     'Kecamatan': listKecamatan,
     'Penduduk': np.random.randint(5000, 25000, size=len(listKecamatan)),
@@ -73,24 +74,19 @@ data = pd.DataFrame({
     'Status': ['Gagal'] * len(listKecamatan)
 })
 
-# Pagination setup
 rows_per_page = 10
 total_pages = len(data) // rows_per_page + (1 if len(data) % rows_per_page > 0 else 0)
 
 if 'page' not in st.session_state:
     st.session_state.page = 1
 
-# Ambil data sesuai halaman
 start_idx = (st.session_state.page - 1) * rows_per_page
 end_idx = start_idx + rows_per_page
 current_data = data.iloc[start_idx:end_idx]
 
-# Tampilkan data slice
 st.dataframe(current_data, use_container_width=True)
 
-# Navigasi halaman (di bawah tabel)
 col1, col2, col3, col4, col5 = st.columns(5)
-
 with col1:
     pass
 with col2:
