@@ -4,7 +4,6 @@ import numpy as np
 import datetime 
 import mysql.connector
 import os
-from config import DB_CONFIG
 from matplotlib import pyplot as plt
 from utils import clearTerminal, testingCheckbox, pilihanDivisi, organizationSelection, previewUploadedFile, usernameAndPassword, registration
 
