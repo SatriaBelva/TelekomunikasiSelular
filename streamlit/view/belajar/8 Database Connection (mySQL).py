@@ -74,7 +74,7 @@ with col2 :
 
 
 st.markdown("### 4. Buat Model-Model Sesuai Dengan Kebutuhan Aplikasi")
-st.markdown('Silahkan buat file file model yang akan berisi kode SQL ')
+st.markdown('Silahkan buat file file model yang akan berisi kode SQL untuk melakukan CRUD dengan database. Setiap file akan merepresentasikan CRUD untuk tema yang sama, misal :gray-background[account_model.py] berisi CRUD untuk data akun')
 col1, col2, col3 = st.columns([0.2,0.6,0.2])
 with col1:
     pass
@@ -89,5 +89,117 @@ with col2:
         │     └── contact_model.py 
         │     └── ....
             ''', language='bash')
+with col2:
+    pass
+
+st.markdown("### 5. Buatlah logika CRUD")
+st.markdown('Silahkan logika CRUD dengan template dibawah ini')
+col1, col2, col3 = st.columns([0.2,0.6,0.2])
+with col1:
+    pass
+with col2:
+    st.code('''
+    import streamlit as st
+    from model.db_connection import get_connection
+    conn = get_connection()
+
+    def get_kontak_data(): 
+        try:
+            return conn.query('ISINYA QUERY SQL', ttl=600)
+        except Exception as e:
+            st.error("ISINYA PESAN ERROR")
+            st.exception(e)
+            return None
+''', language='python')
+with col2:
+    pass
+st.write('Contoh :')
+col1, col2 = st.columns(2)
+with col1 :
+    kol1, kol2, kol3= st.columns(3)
+    with kol1:
+        pass
+    with kol2:
+        st.markdown('<p style="width: 100%; background-color: rgb(28, 59, 89); text-align: center; border-radius: 4px; padding: 2px 4px;">model/account_model.py</p>', unsafe_allow_html=True)    
+    with kol3:
+        pass
+    st.code('''
+    import streamlit as st
+    from model.db_connection import get_connection
+
+    conn = get_connection()
+
+    def get_akun_data():
+        try:
+            return conn.query('SELECT email, password FROM akun;', ttl=600)
+        except Exception as e:
+            st.error("Gagal mengambil data kontak.")
+            st.exception(e)
+            return None
+''', language='python')
+with col2 :
+    kol1, kol2, kol3= st.columns(3)
+    with kol1:
+        pass
+    with kol2:
+        st.markdown('<p style="width: 100%; background-color: rgb(28, 59, 89); text-align: center; border-radius: 4px; padding: 2px 4px;">model/contact_model.py</p>', unsafe_allow_html=True)    
+    with kol3:
+        pass
+    st.code('''
+    import streamlit as st
+    from model.db_connection import get_connection
+
+    conn = get_connection()
+
+    def get_kontak_data(): 
+        try:
+            return conn.query('SELECT * FROM kontak LIMIT 2;', ttl=600)
+        except Exception as e:
+            st.error("Gagal mengambil data kontak.")
+            st.exception(e)
+            return None
+''', language='python')
+
+
+st.markdown("### 6. Isi file model/__init__.py ")
+st.markdown('Silahkan file model/__init__.py dengan template dibawah ini')
+col1, col2, col3 = st.columns([0.2,0.6,0.2])
+with col1:
+    pass
+with col2:
+    st.code('''
+    from .nama_file_model_1 import *
+    from .nama_file_model_2 import *
+            ''', language='python')
+with col2:
+    pass
+
+st.markdown("### 6. Panggil di Controller ")
+st.markdown('Setelah modelnya sudah selesai sekarang seluruh method dalam model bisa dipanggil ke controller. Jangan lupa untuk menggunakan :gray-background[:blue[from] model :blue[import] :orange[*]]')
+col1, col2, col3 = st.columns([0.2,0.6,0.2])
+with col1:
+    pass
+with col2:
+    st.code('''
+    import streamlit as st
+    from model import *
+
+    def akunData() :
+        st.header("📋 Data Akun")
+        akun    = get_akun_data()
+        kontak  = get_kontak_data()
+        owner   = get_Owner_data()
+        if not akun.empty and not kontak.empty and not owner.empty:
+            for row in akun.itertuples():
+                st.write(f"📧 {row.email} | 🔑 {row.password}")
+            st.header("📞 Data Kontak")
+            for i in kontak.itertuples():
+                st.write(f"👤 {i.Owner} | 📱 {i.NomorHP}")
+            st.header("👑 Owner Only")
+            for i in owner.itertuples():
+                st.write(f"Nama Owner ke-{i.Index+1}: {i.Owner}")
+        else:
+            st.warning("Tidak ada data akun ditemukan.")
+            ''', language='python')
 with col2:
     pass

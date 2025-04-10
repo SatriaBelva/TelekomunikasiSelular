@@ -1,5 +1,6 @@
 import streamlit as st
 from model.db_connection import get_connection
+
 conn = get_connection()
 
 def get_kontak_data(): 

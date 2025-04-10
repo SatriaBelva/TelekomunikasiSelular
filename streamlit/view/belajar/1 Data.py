@@ -5,8 +5,8 @@ import datetime
 import mysql.connector
 import os
 from matplotlib import pyplot as plt
-from model.account_model import get_akun_data
-from model.contact_model import get_kontak_data, get_Owner_data
+from controller import *
+
 
 st.title("Data Element")
 st.text("Pada Page ini kita akan belajar mengenai cara membuat dashboard data menggunakan Components yang ada di streamlit dengan sedikit bantuan dari library pandas")
@@ -54,27 +54,4 @@ json = {
 st.json(json)
 st.divider()
 
-st.header("📋 Data Akun")
-akun = get_akun_data()
-if not akun.empty:
-    for row in akun.itertuples():
-        st.write(f"📧 {row.email} | 🔑 {row.password}")
-else:
-    st.warning("Tidak ada data akun ditemukan.")
-
-st.header("📞 Data Kontak")
-kontak = get_kontak_data()
-if not kontak.empty:
-    for i in kontak.itertuples():
-        st.write(f"👤 {i.Owner} | 📱 {i.NomorHP}")
-else:
-    st.warning("Tidak ada data kontak ditemukan.")
-
-st.header("👑 Owner Only")
-owner = get_Owner_data()
-if not owner.empty:
-    for i in owner.itertuples():
-        st.write(f"Nama Owner {i.Index+1}: {i.Owner}")
-else:
-    st.warning("Tidak ada data owner ditemukan.")
-
+akunData()
