@@ -10,7 +10,6 @@ def login():
             authenticated_email.append(i.email)
 
     if not user.is_logged_in:
-        st.markdown(hide_sidebar(), unsafe_allow_html=True)
         st.markdown(landing_page_style(), unsafe_allow_html=True)
         st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
         st.button("🔐 Login dengan Google", on_click=lambda: st.login("google"), key="login_button")

@@ -119,6 +119,22 @@ def landing_page_style() :
         background-color: #3367d6;
     }
 
+    [data-testid="stSidebar"] {
+        display: none;
+    }
+
+    [data-testid="stSidebarCollapsedControl"] {
+        display: none;
+    }
+
+    #MainMenu{
+        display: none;
+    }
+
+    .stAppDeployButton{
+        display: none;
+    }
+
     </style>
 
     <div class="landing-container">

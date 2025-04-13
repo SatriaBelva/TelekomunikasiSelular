@@ -176,7 +176,7 @@ with col2:
 
 st.markdown("### 6. Panggil di Controller ")
 st.markdown('Setelah modelnya sudah selesai sekarang seluruh method dalam model bisa dipanggil ke controller. Jangan lupa untuk menggunakan :gray-background[:blue[from] model :blue[import] :orange[*]]')
-col1, col2, col3 = st.columns([0.2,0.6,0.2])
+col1, col2, col3 = st.columns([0.15,0.7,0.15])
 with col1:
     pass
 with col2:
@@ -190,13 +190,13 @@ with col2:
         kontak  = get_kontak_data()
         owner   = get_Owner_data()
         if not akun.empty and not kontak.empty and not owner.empty:
-            for row in akun.itertuples():
+            for row in akun.itertuples(): # .itertuples() itu template ngga usah diganti
                 st.write(f"📧 {row.email} | 🔑 {row.password}")
             st.header("📞 Data Kontak")
-            for i in kontak.itertuples():
+            for i in kontak.itertuples(): # .itertuples() itu template ngga usah diganti
                 st.write(f"👤 {i.Owner} | 📱 {i.NomorHP}")
             st.header("👑 Owner Only")
-            for i in owner.itertuples():
+            for i in owner.itertuples(): # .itertuples() itu template ngga usah diganti
                 st.write(f"Nama Owner ke-{i.Index+1}: {i.Owner}")
         else:
             st.warning("Tidak ada data akun ditemukan.")
