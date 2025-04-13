@@ -21,6 +21,8 @@ def akunData() :
         for i in email.itertuples():
             st.write(f"Email ke-{i.Index+1}: {i.email}")
             authenticated_email.append(i.email)
+        get_gsheet_ADOMobile_data()
+        get_gsheet_ADOIH_data()
     else:
         st.warning("Tidak ada data akun ditemukan.")
     st.write(authenticated_email)

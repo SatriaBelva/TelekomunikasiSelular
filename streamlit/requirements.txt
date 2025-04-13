@@ -5,3 +5,4 @@ pandas==2.2.3
 prettytable==3.16.0
 streamlit==1.44.0
 Authlib=1.5.2
+st-gsheets-connection==0.1.0
