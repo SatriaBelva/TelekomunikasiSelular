@@ -12,5 +12,3 @@ from middleware import *
 if auth_guard() :
     pg = st.navigation(get_pages())
     pg.run()
-else :
-    pass
