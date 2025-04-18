@@ -2,10 +2,6 @@ import streamlit as st
 from model import *
 from utils import *
 
-import streamlit as st
-from model import *
-from utils import *
-
 # Fungsi untuk ambil data user dari session login
 def get_current_user():
     return st.experimental_user
@@ -38,6 +34,32 @@ def render_sidebar_greeting(user):
     st.sidebar.success(f"Hai, {user.name} 👋")
     if st.sidebar.button("Logout"):
         st.logout()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # def login():
 #     user = st.experimental_user
