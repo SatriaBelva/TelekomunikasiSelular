@@ -34,18 +34,20 @@ Tujuan dari dashboard ini adalah membantu PT Telekomunikasi Selular Jember agar 
 
 1. **Clone repositori**  
    ```bash
-   git clone https://github.com/kamu/repo.git
-   cd repo
+   git clone git clone https://github.com/SatriaBelva/TelekomunikasiSelular.git
+   cd Magang\streamlit
 2. **Install dependensi**  
    ```bash
    pip install streamlit
    pip install -r requirements.txt
 3. **Install dependensi**  
    Buat file .streamlit/secrets.toml dan isi sesuai kredensial kamu (contoh: database, client_id, dsb)
+   
 4. **Jalankan aplikasi**  
    ```bash
    streamlit run main.py   
 
 ## 🔐 Autentikasi
+
 Aplikasi ini menggunakan login via Google OAuth. Hanya email yang terdaftar dalam whitelist database yang diperbolehkan mengakses aplikasi.
 ---
