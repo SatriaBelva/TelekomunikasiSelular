@@ -18,11 +18,9 @@ def get_pages() :
     Populytics      = st.Page("view/projects/Populytics.py", title="Populytics", icon=":material/group:", default=True)
     Market_Radar    = st.Page("view/projects/Market Radar.py", title="Market Radar", icon=":material/shopping_cart:")
     EcoScope        = st.Page("view/projects/EcoScope.py", title="EcoScope", icon=":material/show_chart:")
-    tes             = st.Page("view/projects/tes.py", title="tes", icon=":material/show_chart:")
-    tes_lagi        = st.Page("view/projects/tes_lagi.py", title="tes_lagi", icon=":material/show_chart:")
-    map             = st.Page("view/projects/map.py", title="map", icon=":material/show_chart:")
+    tes_lagi_2      = st.Page("view/projects/tes_lagi_2.py", title="tes_lagi_2", icon=":material/show_chart:")
 
     return {
-        "Project Internship RLO": [Populytics,Market_Radar,EcoScope,tes,tes_lagi,map]
+        "Project Internship RLO": [Populytics,Market_Radar,EcoScope,tes_lagi_2]
         # "Belajar": [Penampungan,Data,Charts,Forms,Session_State,Callback,Layout,Fragment,DB_mySQL_Conn,DB_Gsheet_Conn,Gmail_Auth],
     }

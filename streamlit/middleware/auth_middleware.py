@@ -1,4 +1,5 @@
 from controller import *
+from routes import *
 
 def auth_guard():
     user = get_current_user()
