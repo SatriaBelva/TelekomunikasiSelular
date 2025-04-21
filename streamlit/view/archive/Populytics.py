@@ -1,35 +1,53 @@
 import streamlit as st
-import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import os as os
-from controller import *
+import time
 
-# Load shapefile
-shapefile_path = r"C:\Magang Grapari\Magang\streamlit\data\JemberSHP\ADMINISTRASIDESA_AR_25K.shp" # Sudah Di Model
-gdf = gpd.read_file(shapefile_path)
-kecamatan_list = sorted(gdf['WADMKC'].unique())
+st.json(st.experimental_user)
 
-if 'kecamatan' not in st.session_state:
-    st.session_state['kecamatan'] = "Semua"
-if 'desa' not in st.session_state:
-    st.session_state['desa'] = "Semua"
+listKecamatan = [
+    "Search Kecamatan", "Ajung", "Ambulu", "Arjasa", "Balung", "Bangsalsari", "Gumukmas",
+    "Jelbuk", "Jenggawah", "Jombang", "Kalisat", "Kaliwates", "Kencong", "Ledokombo",
+    "Mayang", "Mumbulsari", "Pakusari", "Panti", "Patrang", "Puger", "Rambipuji",
+    "Semboro", "Silo", "Sukorambi", "Sukowono", "Sumberbaru", "Sumberjambe",
+    "Sumbersari", "Tanggul", "Tempurejo", "Umbulsari", "Wuluhan"
+]
+
+st.session_state.kecamatan = "Search Kecamatan"
+index_kecamatan = None
 
 # Selectbox For Kecamatan and Desa
-colKecamatan, colDesa, colEmpty = st.columns([0.25, 0.25, 0.5])
+colKecamatan, colDesa, colEmpty= st.columns([0.25, 0.25, 0.5])
 with colKecamatan:
-    selected_kecamatan = st.selectbox("Pilih Kecamatan", ["Semua"] + kecamatan_list, index=0, key="kecamatan")
-with colDesa:
-    if selected_kecamatan != "Semua":
-        desa_list = sorted(gdf[gdf['WADMKC'] == selected_kecamatan]['NAMOBJ'].unique())
+    kecamatan = st.selectbox(
+        label="Search Kecamatan", 
+        options = listKecamatan,
+        label_visibility='collapsed', 
+        key='popultycsKecamatanSearch')
+    if kecamatan == 'Search Kecamatan':
+        # st.warning("Tolong Pilih Kecamatan")
+        pass
     else:
-        desa_list = sorted(gdf['NAMOBJ'].unique())
-    selected_desa = st.selectbox("Pilih Desa", ["Semua"] + desa_list, index=0, key="desa")
+        with st.spinner("Wait for it...", show_time=True):
+            time.sleep(2)
+            st.session_state.kecamatan = kecamatan 
+            index_kecamatan = listKecamatan.index(st.session_state.get("kecamatan"))
+        # st.session_state.kecamatan = kecamatan 
+        # index_kecamatan = listKecamatan.index(st.session_state.get("kecamatan"))
 
-
-tes(st.session_state['kecamatan'], st.session_state['desa'])
-index_kecamatan = kecamatan_list.index(st.session_state.get("kecamatan"))
+with colDesa :
+    desa = st.selectbox(
+        label="Search Desa/Kelurahan", 
+        options = ("Search Desa/Kelurahan", 'Desaku', 'Desamu', 'Desa Kita'),
+        label_visibility='collapsed', 
+        key='popultycsDesaSearch')
+    if desa == 'Search Desa/Kelurahan':
+        # st.warning("Tolong Pilih Desa Kelurahan")
+        pass
+    else:
+        st.session_state.desa = desa
 
 # Div For Map and Recomendation
 colMap, colText = st.columns([0.65, 0.35])
@@ -48,8 +66,8 @@ with colText :
 colGraph, colMetrics = st.columns([0.65, 0.35], vertical_alignment='top')
 with colGraph :
     jumlah_penduduk = pd.DataFrame({
-        'Kecamatan' : kecamatan_list,
-        'Penduduk': np.random.randint(5000, 25000, size=len(kecamatan_list))
+        'Kecamatan' : listKecamatan,
+        'Penduduk': np.random.randint(5000, 25000, size=len(listKecamatan))
     })
     st.bar_chart(
         jumlah_penduduk,
@@ -99,10 +117,10 @@ else :
 
 # Div For DataFrame Table
 data = pd.DataFrame({
-    'Kecamatan': kecamatan_list,
-    'Penduduk': np.random.randint(5000, 25000, size=len(kecamatan_list)),
-    'Pendidikan': np.random.randint(5000, 25000, size=len(kecamatan_list)),
-    'Status': ['Gagal'] * len(kecamatan_list)
+    'Kecamatan': listKecamatan,
+    'Penduduk': np.random.randint(5000, 25000, size=len(listKecamatan)),
+    'Pendidikan': np.random.randint(5000, 25000, size=len(listKecamatan)),
+    'Status': ['Gagal'] * len(listKecamatan)
 })
 
 rows_per_page = 10
