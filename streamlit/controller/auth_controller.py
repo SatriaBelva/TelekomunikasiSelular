@@ -20,7 +20,7 @@ def is_email_allowed(email: str) -> bool:
 def render_login_page():
     # st.markdown(landing_page_style(), unsafe_allow_html=True)
     # st.markdown(landing_page(), unsafe_allow_html=True)
-    tes_landing()
+    landing_page_style()
     st.markdown(hide_tools(), unsafe_allow_html=True)
     st.button("🔐 Login dengan Google",use_container_width=True, on_click=lambda: st.login("google"), key="login_button")
     st.markdown("</div></div>", unsafe_allow_html=True)

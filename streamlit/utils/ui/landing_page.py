@@ -173,7 +173,7 @@ def landing_page() :
     with asdsfdsfas :
         pass
 
-def tes_landing() :
+def landing_page_style() :
     html = '''
         <style>
         @keyframes slideUp {
@@ -420,18 +420,3 @@ def tes_landing() :
     </script>
     '''
     return components.html(tes, scrolling=True, height=1600)
-
-def hide_tools() :
-    style = '''
-    <style>
-        [data-testid='stMainBlockContainer']{
-            padding-left:0px; 
-            padding-right:0px; 
-            padding-top:0px;
-        }
-        [data-testid='stHeader']{
-            display: none;
-        }
-    </style>
-    </style>'''
-    return style
