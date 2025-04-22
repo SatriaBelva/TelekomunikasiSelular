@@ -17,8 +17,8 @@ def get_pages() :
     # === Projects Pages ===
     Populytics      = st.Page("view/projects/Populytics.py", title="Populytics", icon=":material/group:", default=True)
     EcoScope        = st.Page("view/projects/EcoScope.py", title="EcoScope", icon=":material/show_chart:")
-    ADOIndihome     = st.Page("view/projects/ADOIndihome.py", title="ADO IH", icon=":material/show_chart:")
-    ADOMobile       = st.Page("view/projects/ADOMobile.py", title="ADO Mobile", icon=":material/show_chart:")
+    ADOIndihome     = st.Page("view/projects/ADOIndihome.py", title="ADO IH", icon=":material/shopping_cart:")
+    ADOMobile       = st.Page("view/projects/ADOMobile.py", title="ADO Mobile", icon=":material/shopping_cart:")
     # Market_Radar    = st.Page("view/projects/Market Radar.py", title="Market Radar", icon=":material/shopping_cart:")
     # tes_lagi_2      = st.Page("view/projects/tes_lagi_2.py", title="tes_lagi_2", icon=":material/show_chart:")
 

@@ -15,164 +15,6 @@ EcoScope       = get_base64_image("assets/EcoScope.png")
 ADOIH          = get_base64_image("assets/ADOIH.png")
 ADOMobile      = get_base64_image("assets/ADOMobile.png")
 
-
-def landing_page_style() :             
-    css = """
-    <style>
-    /* Gradient background */
-    .landing-container {
-        background: linear-gradient(135deg, #f3f4f6, #e0f7fa);
-        padding: 50px;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        margin-top: 100px;
-    }
-
-    .landing-title {
-        font-size: 40px;
-        font-weight: 700;
-        color: #0d47a1;
-    }
-
-    .landing-subtitle {
-        font-size: 18px;
-        color: #333333;
-        margin-top: 10px;
-        margin-bottom: 30px;
-    }
-
-    .login-button {
-        background-color: #4285F4;
-        color: white;
-        padding: 12px 30px;
-        font-size: 16px;
-        font-weight: bold;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        box-shadow: 0 4px 14px rgba(66, 133, 244, 0.4);
-        transition: background-color 0.3s ease;
-    }
-
-    .login-button:hover {
-        background-color: #3367d6;
-    }
-
-    [data-testid="stSidebar"] {
-        display: none;
-    }
-
-    [data-testid="stSidebarCollapsedControl"] {
-        display: none;
-    }
-
-    #MainMenu{
-        display: none;
-    }
-
-    .stAppDeployButton{
-        display: none;
-    }
-
-    </style>
-
-    <div class="landing-container">
-        <div class="landing-title">👋 Selamat Datang di Aplikasi Internship</div>
-        <div class="landing-subtitle">
-            Eksplorasi data, visualisasi, dan manajemen proyek <br>
-            dalam satu dashboard interaktif.
-        </div>
-
-    """
-    return css
-
-def hide_sidebar():
-    css = """
-    <style>
-    [data-testid="stSidebar"] {
-        display: none;
-    }
-
-    [data-testid="stSidebarCollapsedControl"] {
-        display: none;
-    }
-
-    #MainMenu{
-        display: none;
-    }
-
-    .stAppDeployButton{
-        display: none;
-    }
-    </style>
-    """
-    return css
-
-def landing_page() :
-    st.markdown('''
-        <style>
-        [data-testid="stMainBlockContainer"]{
-            padding-left:0px;
-            padding-right:0px;
-        }
-        [data-testid="stHorizontalBlock"] img{
-            
-        }
-        </style>
-    ''',unsafe_allow_html=True)
-    colKecamatan, colDesa, colEmpty= st.columns([0.2, 0.4, 0.4])
-    with colKecamatan :
-        st.image("assets\logo_telkomsel.png")
-    with colDesa :
-        pass
-    with colEmpty :
-        selected = option_menu(
-            menu_title=None,
-            options=['Beranda', 'Fitur', 'Login'],
-            orientation='horizontal'
-        )
-        
-    st.image("assets/bg_telkomsel.png", use_container_width=True)
-
-    colKecamatan, colDesa, colEmpty= st.columns([0.21, 0.8, 0.1])
-    with colKecamatan :
-        pass
-    with colDesa :
-        st.image("assets/peta_telkomsel.png", width=1000)
-    with colEmpty :
-        pass
-
-    colKecamatan, colDesa, colEmpty= st.columns([0.8, 0.8, 0.1])
-    with colKecamatan :
-        pass
-    with colDesa :
-        st.text('Feature')
-    with colEmpty :
-        pass
-
-    colKecamatan, colDesa, colEmpty= st.columns([0.65, 0.8, 0.1])
-    with colKecamatan :
-        pass
-    with colDesa :
-        st.header("Kategori Data")
-    with colEmpty :
-        pass
-
-    asas, colKecamatan, colDesa, colEmpty, colKota, asdsfdsfas= st.columns([0.3, 0.3, 0.3, 0.3, 0.3, 0.3], gap="small")
-    with asas :
-        pass
-    with colKecamatan :
-        st.image("assets\popul.png")
-    with colDesa :
-        st.image("assets\Eco.png")
-    with colEmpty :
-        st.image("assets\wasd.png")
-    with colKota :
-        st.image("assets\sfgfsg.png")
-    with asdsfdsfas :
-        pass
-
 def landing_page_style() :
     html = '''
         <style>
@@ -420,3 +262,97 @@ def landing_page_style() :
     </script>
     '''
     return components.html(tes, scrolling=True, height=1600)
+
+
+def hide_sidebar():
+    css = """
+    <style>
+    [data-testid="stSidebar"] {
+        display: none;
+    }
+
+    [data-testid="stSidebarCollapsedControl"] {
+        display: none;
+    }
+
+    #MainMenu{
+        display: none;
+    }
+
+    .stAppDeployButton{
+        display: none;
+    }
+    </style>
+    """
+    return css
+
+# def landing_page_style() :             
+#     css = """
+#     <style>
+#     /* Gradient background */
+#     .landing-container {
+#         background: linear-gradient(135deg, #f3f4f6, #e0f7fa);
+#         padding: 50px;
+#         border-radius: 20px;
+#         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+#         text-align: center;
+#         margin-top: 100px;
+#     }
+
+#     .landing-title {
+#         font-size: 40px;
+#         font-weight: 700;
+#         color: #0d47a1;
+#     }
+
+#     .landing-subtitle {
+#         font-size: 18px;
+#         color: #333333;
+#         margin-top: 10px;
+#         margin-bottom: 30px;
+#     }
+
+#     .login-button {
+#         background-color: #4285F4;
+#         color: white;
+#         padding: 12px 30px;
+#         font-size: 16px;
+#         font-weight: bold;
+#         border: none;
+#         border-radius: 10px;
+#         cursor: pointer;
+#         box-shadow: 0 4px 14px rgba(66, 133, 244, 0.4);
+#         transition: background-color 0.3s ease;
+#     }
+
+#     .login-button:hover {
+#         background-color: #3367d6;
+#     }
+
+#     [data-testid="stSidebar"] {
+#         display: none;
+#     }
+
+#     [data-testid="stSidebarCollapsedControl"] {
+#         display: none;
+#     }
+
+#     #MainMenu{
+#         display: none;
+#     }
+
+#     .stAppDeployButton{
+#         display: none;
+#     }
+
+#     </style>
+
+#     <div class="landing-container">
+#         <div class="landing-title">👋 Selamat Datang di Aplikasi Internship</div>
+#         <div class="landing-subtitle">
+#             Eksplorasi data, visualisasi, dan manajemen proyek <br>
+#             dalam satu dashboard interaktif.
+#         </div>
+
+#     """
+#     return css
