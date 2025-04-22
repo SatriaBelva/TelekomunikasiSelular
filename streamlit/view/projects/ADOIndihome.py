@@ -12,7 +12,7 @@ with col1 :
         }
     )
     st.bar_chart(source, x="Kabupaten", y=["cd", "populasi"], horizontal=False, stack=True, color=["#F5868D", "#E30511"])
-    st.bar_chart(source, x="variety", y="yield", color="site", horizontal=False)
+    st.bar_chart(source, x="Kabupaten", y=["cd"], horizontal=False, stack=True, color=["#E30511"])
 with col2 :
     source = pd.DataFrame(
         {
@@ -22,9 +22,7 @@ with col2 :
         }
     )
     st.bar_chart(source, x="Kabupaten", y=["cd", "populasi"], horizontal=False, stack=True, color=["#F5868D", "#E30511"])
-    st.bar_chart(source, x="variety", y="yield", color="site", horizontal=False)
-
-st.write(source)
+    st.bar_chart(source, x="Kabupaten", y=["cd"], horizontal=False, stack=True, color=["#E30511"])
 
 dataTable = pd.DataFrame(
     {

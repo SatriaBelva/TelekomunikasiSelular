@@ -31,8 +31,6 @@ def map(kecamatan, desa):
     elif selected_desa != "Semua":
         highlight_geom = gdf[gdf['NAMOBJ'] == selected_desa]
 
-
-
     #colormap
     colormap = cm.linear.YlOrRd_09.scale(gdf['SHAPE_Area'].min(), gdf['SHAPE_Area'].max())
     colormap.caption = 'Luas Area'
