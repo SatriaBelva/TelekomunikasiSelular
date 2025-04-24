@@ -62,7 +62,6 @@ data = pd.DataFrame({
     'Kecamatan': kecamatanList,
     'Penduduk': np.random.randint(5000, 25000, size=len(kecamatanList)),
     'Pendidikan': np.random.randint(5000, 25000, size=len(kecamatanList)),
-    'Status': ['Gagal'] * len(kecamatanList)
 })
 
 rows_per_page = 10

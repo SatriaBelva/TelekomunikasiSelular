@@ -6,20 +6,20 @@ with col1 :
     source = pd.DataFrame(
         {
             "Kabupaten" : ['Lumajang', "Jember", "Banyuwangi", "Bondowoso", "Situbondo", "Probolinggo", "Kota Probolinggo"],
-            "cd"        : [50, 85, 120, 160, 210, 150, 150],
+            "cb"        : [50, 85, 120, 160, 210, 150, 150],
             "populasi"  : [70, 105, 140, 180, 230, 170, 170]
         }
     )
-    st.bar_chart(source, x="Kabupaten", y=["cd", "populasi"], horizontal=False, stack=True, color=["#F5868D", "#E30511"])
+    st.bar_chart(source, x="Kabupaten", y=["cb", "populasi"], horizontal=False, stack=True, color=["#F5868D", "#E30511"])
 with col2 :
     source = pd.DataFrame(
         {
             "Kabupaten" : ['Lumajang', "Jember", "Banyuwangi", "Bondowoso", "Situbondo", "Probolinggo", "Kota Probolinggo"],
-            "cd"        : [50, 85, 120, 160, 210, 150, 150],
-            "populasi"  : [70, 105, 140, 180, 230, 170, 170]
+            "FB Share REG"        : [50, 85, 120, 160, 210, 150, 150],
+            "FB Share YOUTH"           : [70, 105, 140, 180, 230, 170, 170]
         }
     )
-    st.bar_chart(source, x="Kabupaten", y=["cd", "populasi"], horizontal=False, stack=False, color=["#F5868D", "#E30511"])
+    st.bar_chart(source, x="Kabupaten", y=["FB Share REG", "FB Share YOUTH"], horizontal=False, stack=False, color=["#F5868D", "#E30511"])
 
 dataTable = pd.DataFrame(
     {
