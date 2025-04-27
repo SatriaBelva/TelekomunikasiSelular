@@ -54,4 +54,4 @@ json = {
 st.json(json)
 st.divider()
 
-akunData()
+# akunData()

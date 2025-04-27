@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit as st
 import pandas as pd
 import numpy as np
 import os as os
@@ -16,19 +15,20 @@ kecamatanList = kecamatan_list()
 # Selectbox For Kecamatan and Desa
 colKecamatan, colDesa, colEmpty = st.columns([0.25, 0.25, 0.5])
 with colKecamatan:
-    selected_kecamatan = st.selectbox("Pilih Kecamatan", ["Search Kecamatan"] + ["Semua"] + kecamatanList, index=0, key="kecamatan")
+    selected_kecamatan = st.selectbox("Pilih Kecamatan", ["Semua"] + kecamatanList, index=0, key="kecamatan")
 with colDesa:
     if selected_kecamatan != "Semua":
         desa_list = sorted(gdf[gdf['WADMKC'] == selected_kecamatan]['NAMOBJ'].unique())
     else:
         desa_list = sorted(gdf['NAMOBJ'].unique())
-    selected_desa = st.selectbox("Pilih Desa", ["Search Desa"] + ["Semua"] + desa_list, index=0, key="desa")
+    selected_desa = st.selectbox("Pilih Desa", ["Semua"] + desa_list, index=0, key="desa")
 
 # Div For Map and Recomendation
 colMap, colText = st.columns([0.65, 0.35])
 with colMap :
-    map(st.session_state['kecamatan'], st.session_state['desa'])
-    index_kecamatan = kecamatanList.index(st.session_state.get("kecamatan"))
+    pass
+    # map(st.session_state['kecamatan'], st.session_state['desa'])
+    # index_kecamatan = kecamatanList.index(st.session_state.get("kecamatan"))
 with colText :
     if st.session_state.kecamatan == "Search Kecamatan":
         st.warning("Silahkan Pilih Kecamatan Terlebih dahulu")
@@ -44,64 +44,16 @@ with colText :
             st.write(f'Rekomendasi :\n\nLorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.')
 
 st.title("Pendidikan")
-dataPendidikan = pd.DataFrame(
-    {
-        "Kecamatan"     : kecamatanList,
-        "Tidak Sekolah" : np.random.randint(0, 750, size=len(kecamatanList)),
-        "SLTP"          : np.random.randint(0, 750, size=len(kecamatanList)),
-        "Kuliah"        : np.random.randint(0, 750, size=len(kecamatanList))
-    }
-)
-st.bar_chart(dataPendidikan, x="Kecamatan", y=["Tidak Sekolah", "SLTP", "Kuliah"], horizontal=False, stack=True, color=["#FFCDD0", "#F5868D", "#E30511"], height=550)
+graphPendidikan(st.session_state['kecamatan'])
 
 st.title("Pekerjaan")
-dataPendidikan = pd.DataFrame(
-    {
-        "Kecamatan"     : kecamatanList,
-        "Tidak Bekerja" : np.random.randint(0, 750, size=len(kecamatanList)),
-        "Wiraswasta"    : np.random.randint(0, 750, size=len(kecamatanList)),
-        "Guru"          : np.random.randint(0, 750, size=len(kecamatanList))
-    }
-)
-st.bar_chart(dataPendidikan, x="Kecamatan", y=["Tidak Bekerja", "Wiraswasta", "Guru"], horizontal=False, stack=True, color=["#FFCDD0", "#F5868D", "#E30511"], height=550)
+graphPekerjaan(st.session_state['kecamatan'])
 
+st.title("Jumlah Penduduk")
+graphJumlahPenduduk(st.session_state['kecamatan'])
+
+st.title("Jumlah KK")
+graphJumlahKK(st.session_state['kecamatan'])
 
 # Div For DataFrame Table
-data = pd.DataFrame(
-    {   
-        'Kecamatan'     : kecamatanList,
-        'Penduduk'      : np.random.randint(5000, 25000, size=len(kecamatanList)),
-        'KartuKeluarga' : np.random.randint(5000, 25000, size=len(kecamatanList)),
-    }
-)
-
-rows_per_page = 10
-total_pages = len(data) // rows_per_page + (1 if len(data) % rows_per_page > 0 else 0)
-
-if 'page' not in st.session_state:
-    st.session_state.page = 1
-
-start_idx = (st.session_state.page - 1) * rows_per_page
-end_idx = start_idx + rows_per_page
-current_data = data.iloc[start_idx:end_idx]
-
-st.dataframe(current_data, use_container_width=True, hide_index=True)
-
-col1, col2, col3, col4, col5 = st.columns(5)
-with col1:
-    pass
-with col2:
-    if st.button("⬅️ Prev", key="prev_button", use_container_width=True, ) and st.session_state.page > 1:
-        st.session_state.page -= 1
-        st.rerun()
-with col3:
-    st.markdown(
-        f"<div style='text-align: center; font-weight: normal; padding-top:6px;'>Page {st.session_state.page} of {total_pages}</div>",
-        unsafe_allow_html=True
-    )   
-with col4:
-    if st.button("Next ➡️", key="next_button", use_container_width=True) and st.session_state.page < total_pages:
-        st.session_state.page += 1
-        st.rerun()
-with col5:
-    pass
+table2()
