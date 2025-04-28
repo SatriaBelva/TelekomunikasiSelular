@@ -11,8 +11,6 @@ def map_path() :
 
 def kecamatan_list() :
     kecamatan_list = sorted(map_path()['WADMKC'].unique())
-    kecamatan_list.append("Semua")
-    kecamatan_list.append("Search Kecamatan")
     return kecamatan_list
 
 def map(kecamatan, desa):
