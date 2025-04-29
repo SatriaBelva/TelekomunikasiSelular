@@ -4,7 +4,7 @@ import numpy as np
 from controller import *
 from model import *
 
-dataKecamatan = kecamatan_list()
+# dataKecamatan = kecamatan_list()
 
 def graphPendidikan(kecamatan):
     if kecamatan == "Semua" : 

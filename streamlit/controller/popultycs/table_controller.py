@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 from controller import *
 from model import *
+from controller.popultycs.Popultycsmap_controller import kecamatan_list
 
 dataKecamatan = kecamatan_list()
 
