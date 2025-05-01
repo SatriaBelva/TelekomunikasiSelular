@@ -11,6 +11,7 @@ def get_gsheet_ADOMobile_data():
 
     df = ADOMobileconn.read(ttl=2)
     try:
+        st.write(df)
         for row in df.itertuples():
             st.write(f'''
                 Regional        : {row.REGIONAL}

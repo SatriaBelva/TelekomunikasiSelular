@@ -23,6 +23,6 @@ def get_pages() :
     # tes_lagi_2      = st.Page("view/projects/tes_lagi_2.py", title="tes_lagi_2", icon=":material/show_chart:")
 
     return {
-        "Project Internship RLO": [Populytics, EcoScope, ADOIndihome, ADOMobile]
-        # "Belajar": [Penampungan,Data,Charts,Forms,Session_State,Callback,Layout,Fragment,DB_mySQL_Conn,DB_Gsheet_Conn,Gmail_Auth],
+        "Project Internship RLO": [Populytics, EcoScope, ADOIndihome, ADOMobile],
+        # "Belajar": [Penampungan,Data,Charts,Forms,Session_State,Callback,Layout,Fragment,DB_mySQL_Conn,DB_Gsheet_Conn,Gmail_Auth]
     }

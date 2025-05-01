@@ -1,25 +1,12 @@
 import streamlit as st
 import pandas as pd
+from controller import *
 
 col1, col2 = st.columns(2)
 with col1 :
-    source = pd.DataFrame(
-        {
-            "Kabupaten" : ['Lumajang', "Jember", "Banyuwangi", "Bondowoso", "Situbondo", "Probolinggo", "Kota Probolinggo"],
-            "cb"        : [50, 85, 120, 160, 210, 150, 150],
-            "populasi"  : [70, 105, 140, 180, 230, 170, 170]
-        }
-    )
-    st.bar_chart(source, x="Kabupaten", y=["cb", "populasi"], horizontal=False, stack=True, color=["#F5868D", "#E30511"])
+    graphCB_Populasi()
 with col2 :
-    source = pd.DataFrame(
-        {
-            "Kabupaten" : ['Lumajang', "Jember", "Banyuwangi", "Bondowoso", "Situbondo", "Probolinggo", "Kota Probolinggo"],
-            "FB Share REG"        : [50, 85, 120, 160, 210, 150, 150],
-            "FB Share YOUTH"           : [70, 105, 140, 180, 230, 170, 170]
-        }
-    )
-    st.bar_chart(source, x="Kabupaten", y=["FB Share REG", "FB Share YOUTH"], horizontal=False, stack=False, color=["#F5868D", "#E30511"])
+    graphCB_Populasi()
 
 dataTable = pd.DataFrame(
     {
@@ -33,5 +20,5 @@ dataTable = pd.DataFrame(
         "Total PORT" : [44453, 44453, 44453, 44453, 44453, 44453, 44453],
     }
 )
-
+get_CB_data()
 st.dataframe(dataTable, hide_index=True)

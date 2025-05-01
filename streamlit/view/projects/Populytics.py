@@ -29,9 +29,9 @@ with colProduct:
 # Div For Map and Recomendation
 colMap, colText = st.columns([0.65, 0.35])
 with colMap :
-    # pass
-    map(st.session_state['kecamatan'], st.session_state['desa'])
-    index_kecamatan = kecamatanList.index(st.session_state.get("kecamatan"))
+    pass
+    # map(st.session_state['kecamatan'], st.session_state['desa'])
+    # index_kecamatan = kecamatanList.index(st.session_state.get("kecamatan"))
 with colText :
     if st.session_state.kecamatan == "Search Kecamatan":
         st.warning("Silahkan Pilih Kecamatan Terlebih dahulu")
@@ -67,5 +67,4 @@ graphJumlahPenduduk(st.session_state['kecamatan'])
 st.title("Jumlah KK")
 graphJumlahKK(st.session_state['kecamatan'])
 
-# Div For DataFrame Table
 table2()
