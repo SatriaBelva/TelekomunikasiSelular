@@ -31,7 +31,7 @@ def tableEcoscope(kecamatan) :
 def get_kategori_image_list():
     kategori_list = get_kategori_ekonomi_data()["Kategori Ekonomi"].tolist()
     kategori_to_image = {
-        "Tinggi": "https://github.com/SatriaBelva/TelekomunikasiSelular/blob/main/streamlit/assets/Badge-Tinggi.png?raw=true",
+        "Tinggi": "https://github.com/SatriaBelva/TelekomunikasiSelular/blob/main/streamlit/assets/Badge-Tinggi-v2.png?raw=true",
         "Sedang": "https://github.com/SatriaBelva/TelekomunikasiSelular/blob/main/streamlit/assets/Badge-Sedang.png?raw=true",
         "Rendah": "https://github.com/SatriaBelva/TelekomunikasiSelular/blob/main/streamlit/assets/Badge-Rendah.png?raw=true",
     }
