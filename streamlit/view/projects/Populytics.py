@@ -67,4 +67,4 @@ graphJumlahPenduduk(st.session_state['kecamatan'])
 st.title("Jumlah KK")
 graphJumlahKK(st.session_state['kecamatan'])
 
-tablePopultycs()
+tablePopultycs(st.session_state['kecamatan'])

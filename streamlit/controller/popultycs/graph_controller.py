@@ -58,15 +58,16 @@ def graphJumlahPenduduk(kecamatan):
                 "Jumlah Penduduk" : get_jumlah_penduduk_data(kecamatan)["Jumlah Penduduk"].tolist(),
             }
         )
-        st.bar_chart(dataPendidikan, x="Kecamatan", y="Jumlah Penduduk", horizontal=False, stack=True, color="#E30511", height=550)
+        return st.bar_chart(dataPendidikan, x="Kecamatan", y="Jumlah Penduduk", horizontal=False, stack=True, color="#E30511", height=550)
     elif kecamatan != "Semua" : 
         dataPendidikan = pd.DataFrame(
             {
                 f"Kelurahan di {kecamatan.capitalize()}"    : get_kelurahan_data(kecamatan)["nama"].tolist(),
-                "Jumlah Penduduk"                           : get_jumlah_penduduk_data(kecamatan)["Jumlah Penduduk"].tolist()
+                "Jumlah Penduduk"                           : get_jumlah_penduduk_popultycs_data(kecamatan)["Jumlah Penduduk"].tolist()
             }
         )
-        st.bar_chart(dataPendidikan, x=f"Kelurahan di {kecamatan.capitalize()}", y="Jumlah Penduduk", horizontal=False, stack=True, color="#E30511", height=550)
+        return st.bar_chart(dataPendidikan, x=f"Kelurahan di {kecamatan.capitalize()}", y="Jumlah Penduduk", horizontal=False, stack=True, color="#E30511", height=550)
+        
 
 def graphJumlahKK(kecamatan):
     if kecamatan == "Semua" : 

@@ -181,7 +181,7 @@ def get_ThirdCategory_data(kecamatan) :
         st.exception(e)
         return None
     
-def get_jumlah_penduduk_data(kecamatan) :
+def get_jumlah_penduduk_popultycs_data(kecamatan) :
     try:
         if kecamatan == "Semua" : 
             return conn.query('''

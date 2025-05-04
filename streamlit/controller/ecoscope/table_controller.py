@@ -15,25 +15,23 @@ def tableEcoscope(kecamatan) :
         }
     )
 
-    st.data_editor(
-        data,
+    return st.data_editor(data,
         column_config={
-            "Kategori Ekonomi": st.column_config.ImageColumn(
-                "Kategori Ekonomi",
-                help="Tampilan badge ekonomi berdasarkan kategori",
-            )
-        },
+                        "Kategori Ekonomi": st.column_config.ImageColumn(
+                            "Kategori Ekonomi",
+                            help="Tampilan badge ekonomi berdasarkan kategori",
+                        )
+                    },
         hide_index=True,
         use_container_width=True
     )
-    return st.dataframe(data,use_container_width=True, hide_index=True)
 
 def get_kategori_image_list():
     kategori_list = get_kategori_ekonomi_data()["Kategori Ekonomi"].tolist()
     kategori_to_image = {
-        "Tinggi": "https://github.com/SatriaBelva/TelekomunikasiSelular/blob/main/streamlit/assets/Badge-Tinggi-v2.png?raw=true",
-        "Sedang": "https://github.com/SatriaBelva/TelekomunikasiSelular/blob/main/streamlit/assets/Badge-Sedang.png?raw=true",
-        "Rendah": "https://github.com/SatriaBelva/TelekomunikasiSelular/blob/main/streamlit/assets/Badge-Rendah.png?raw=true",
+        "Tinggi": "https://github.com/SatriaBelva/TelekomunikasiSelular/blob/main/streamlit/assets/Badge-Tinggi-V3.png?raw=true",
+        "Sedang": "https://github.com/SatriaBelva/TelekomunikasiSelular/blob/main/streamlit/assets/Badge-Sedang-V3.png?raw=true",
+        "Rendah": "https://github.com/SatriaBelva/TelekomunikasiSelular/blob/main/streamlit/assets/Badge-Rendah-V3.png?raw=true",
     }
     return [kategori_to_image.get(kat, "") for kat in kategori_list]
      

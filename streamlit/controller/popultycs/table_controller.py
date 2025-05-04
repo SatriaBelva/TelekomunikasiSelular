@@ -3,27 +3,40 @@ import pandas as pd
 import numpy as np
 from controller import *
 from model import *
-from controller.popultycs.Popultycsmap_controller import kecamatan_list
 
-dataKecamatan = kecamatan_list()
-
-def tablePopultycs() :
-    data = pd.DataFrame(
-        {   
-            'Kecamatan'     : dataKecamatan,
-            'Sekolah Tinggi'      : np.random.randint(5000, 25000, size=len(dataKecamatan)),
-            'Sekolah Menengah' : np.random.randint(5000, 25000, size=len(dataKecamatan)),
-            'Tidak/Belum Sekolah & Tamat SD' : np.random.randint(5000, 25000, size=len(dataKecamatan)),
-            'Tidak/Belum Bekerja' : np.random.randint(5000, 25000, size=len(dataKecamatan)),
-            'Penghasilan Stabil' : np.random.randint(5000, 25000, size=len(dataKecamatan)),
-            'Penghasilan Tidak Stabil' : np.random.randint(5000, 25000, size=len(dataKecamatan)),
-            'Jumlah Penduduk' : np.random.randint(5000, 25000, size=len(dataKecamatan)),
-            'Jumlah KK' : np.random.randint(5000, 25000, size=len(dataKecamatan)),
-        }
-    )
-    st.dataframe(data,use_container_width=True, hide_index=True)
+def tablePopultycs(kecamatan) :
+    if kecamatan == "Semua" :
+        
+        data = pd.DataFrame(
+            {   
+                'Kecamatan'                      : get_kecamatan_data()["nama"].tolist(),
+                'Sekolah Tinggi'                 : get_kuliah_data(kecamatan)["kuliah"].tolist(),
+                'Sekolah Menengah'               : get_SLTPSLTA_data(kecamatan)["SLTP/SLTA"].tolist(),
+                'Tidak/Belum Sekolah & Tamat SD' : get_belum_sekolah_data(kecamatan)["Tidak/putus sekolah, belum tamat SD, tamat SD"].tolist(),
+                'Tidak/Belum Bekerja'            : get_firstCategory_data(kecamatan)["Category 1"].tolist(),
+                'Penghasilan Stabil'             : get_ThirdCategory_data(kecamatan)["Category 3"].tolist(),
+                'Penghasilan Tidak Stabil'       : get_secondCategory_data(kecamatan)["Category 2"].tolist(),
+                'Jumlah Penduduk'                : get_jumlah_penduduk_data(kecamatan)["Jumlah Penduduk"].tolist(),
+                'Jumlah KK'                      : get_jumlahKK_data(kecamatan)["Jumlah Kartu Keluarga"].tolist(),
+            }
+        )
+        return st.dataframe(data,use_container_width=True, hide_index=True)
+    elif kecamatan != "Semua" :
+            data = pd.DataFrame(
+                {   
+                    f"Kelurahan di {kecamatan.capitalize()}"    : get_kelurahan_data(kecamatan)["nama"].tolist(),
+                    'Sekolah Tinggi'                            : get_kuliah_data(kecamatan)["kuliah"].tolist(),
+                    'Sekolah Menengah'                          : get_SLTPSLTA_data(kecamatan)["SLTP/SLTA"].tolist(),
+                    'Tidak/Belum Sekolah & Tamat SD'            : get_belum_sekolah_data(kecamatan)["Tidak/putus sekolah, belum tamat SD, tamat SD"].tolist(),
+                    'Tidak/Belum Bekerja'                       : get_firstCategory_data(kecamatan)["Category 1"].tolist(),
+                    'Penghasilan Stabil'                        : get_ThirdCategory_data(kecamatan)["Category 3"].tolist(),
+                    'Penghasilan Tidak Stabil'                  : get_secondCategory_data(kecamatan)["Category 2"].tolist(),
+                    'Jumlah Penduduk'                           : get_jumlah_penduduk_popultycs_data(kecamatan)["Jumlah Penduduk"].tolist(),
+                    'Jumlah KK'                                 : get_jumlahKK_data(kecamatan)["Jumlah Kartu Keluarga"].tolist(),
+                }
+            )
+            return st.dataframe(data,use_container_width=True, hide_index=True)
     
-
 def table2() :
     data = pd.DataFrame(
         {   
