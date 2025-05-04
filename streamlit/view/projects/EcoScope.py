@@ -24,9 +24,9 @@ with colDesa:
 # Div For Map and Recomendation
 colMap, colText = st.columns([0.65, 0.35])
 with colMap :
-    # mapEcoscope(st.session_state['kecamatan'])
-    # index_kecamatan = kecamatanList.index(st.session_state.get("kecamatan"))
-    pass
+    mapEcoscope(st.session_state['kecamatan'])
+    index_kecamatan = kecamatanList.index(st.session_state.get("kecamatan"))
+    # pass
 with colText :
     if st.session_state.kecamatan == "Search Kecamatan":
         st.warning("Silahkan Pilih Kecamatan Terlebih dahulu")

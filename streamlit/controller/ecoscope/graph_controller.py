@@ -16,9 +16,9 @@ def graphIndeksEkonomi(kecamatan):
     elif kecamatan != "Semua" : 
         dataPendidikan = pd.DataFrame(
             {
-                f"Kelurahan di {kecamatan.capitalize()}"    : get_kecamatan_data()["nama"].tolist(),
+                "Kecamatan"    : get_kecamatan_data()["nama"].tolist(),
                 "Indeks Ekonomi"                            : get_indeks_ekonomi(kecamatan)["Indeks Ekonomi"].tolist()
             }
         )
-        st.bar_chart(dataPendidikan, x=f"Kelurahan di {kecamatan.capitalize()}", y="Indeks Ekonomi", horizontal=False, stack=True, color="#E30511", height=550)
+        st.bar_chart(dataPendidikan, x="Kecamatan", y="Indeks Ekonomi", horizontal=False, stack=True, color="#E30511", height=550)
 

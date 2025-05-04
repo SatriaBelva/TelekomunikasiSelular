@@ -3,6 +3,10 @@ import pandas as pd
 import numpy as np
 import os as os
 from controller import *
+from model import *
+
+st.write(get_account_data()["email"].tolist())
+st.write(get_account_data()["password"].tolist())
 
 if 'kecamatan' not in st.session_state:
     st.session_state['kecamatan'] = "Semua"
@@ -29,9 +33,9 @@ with colProduct:
 # Div For Map and Recomendation
 colMap, colText = st.columns([0.65, 0.35])
 with colMap :
-    pass
-    # map(st.session_state['kecamatan'], st.session_state['desa'])
-    # index_kecamatan = kecamatanList.index(st.session_state.get("kecamatan"))
+    # pass
+    map(st.session_state['kecamatan'], st.session_state['desa'])
+    index_kecamatan = kecamatanList.index(st.session_state.get("kecamatan"))
 with colText :
     if st.session_state.kecamatan == "Search Kecamatan":
         st.warning("Silahkan Pilih Kecamatan Terlebih dahulu")

@@ -10,3 +10,12 @@ def get_email_data() :
         st.error("Gagal mengambil data kontak.")
         st.exception(e)
         return None
+    
+def get_account_data() : 
+    try:
+        return conn.query('SELECT * FROM `user`', ttl=600)
+    except Exception as e:
+        st.error("Gagal mengambil data kontak.")
+        st.exception(e)
+        return None
+    
