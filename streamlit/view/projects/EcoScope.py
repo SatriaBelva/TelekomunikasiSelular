@@ -45,4 +45,3 @@ st.title("Indeks Ekonomi")
 graphIndeksEkonomi(st.session_state['kecamatan'])
 
 tableEcoscope(st.session_state['kecamatan'])
-
