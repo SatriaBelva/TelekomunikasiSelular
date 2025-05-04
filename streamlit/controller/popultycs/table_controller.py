@@ -7,7 +7,24 @@ from controller.popultycs.Popultycsmap_controller import kecamatan_list
 
 dataKecamatan = kecamatan_list()
 
-def table() :
+def tablePopultycs() :
+    data = pd.DataFrame(
+        {   
+            'Kecamatan'     : dataKecamatan,
+            'Sekolah Tinggi'      : np.random.randint(5000, 25000, size=len(dataKecamatan)),
+            'Sekolah Menengah' : np.random.randint(5000, 25000, size=len(dataKecamatan)),
+            'Tidak/Belum Sekolah & Tamat SD' : np.random.randint(5000, 25000, size=len(dataKecamatan)),
+            'Tidak/Belum Bekerja' : np.random.randint(5000, 25000, size=len(dataKecamatan)),
+            'Penghasilan Stabil' : np.random.randint(5000, 25000, size=len(dataKecamatan)),
+            'Penghasilan Tidak Stabil' : np.random.randint(5000, 25000, size=len(dataKecamatan)),
+            'Jumlah Penduduk' : np.random.randint(5000, 25000, size=len(dataKecamatan)),
+            'Jumlah KK' : np.random.randint(5000, 25000, size=len(dataKecamatan)),
+        }
+    )
+    st.dataframe(data,use_container_width=True, hide_index=True)
+    
+
+def table2() :
     data = pd.DataFrame(
         {   
             'Kecamatan'     : dataKecamatan,
@@ -46,20 +63,3 @@ def table() :
             st.rerun()
     with col5:
         pass
-
-def table2() :
-    data = pd.DataFrame(
-        {   
-            'Kecamatan'     : dataKecamatan,
-            'Sekolah Tinggi'      : np.random.randint(5000, 25000, size=len(dataKecamatan)),
-            'Sekolah Menengah' : np.random.randint(5000, 25000, size=len(dataKecamatan)),
-            'Tidak/Belum Sekolah & Tamat SD' : np.random.randint(5000, 25000, size=len(dataKecamatan)),
-            'Tidak/Belum Bekerja' : np.random.randint(5000, 25000, size=len(dataKecamatan)),
-            'Penghasilan Stabil' : np.random.randint(5000, 25000, size=len(dataKecamatan)),
-            'Penghasilan Tidak Stabil' : np.random.randint(5000, 25000, size=len(dataKecamatan)),
-            'Jumlah Penduduk' : np.random.randint(5000, 25000, size=len(dataKecamatan)),
-            'Jumlah KK' : np.random.randint(5000, 25000, size=len(dataKecamatan)),
-        }
-    )
-
-    st.dataframe(data,use_container_width=True, hide_index=True)

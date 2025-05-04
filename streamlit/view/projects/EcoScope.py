@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import os as os
 from controller import *
+from model import *
 
 if 'kecamatan' not in st.session_state:
     st.session_state['kecamatan'] = "Semua"
@@ -23,8 +24,9 @@ with colDesa:
 # Div For Map and Recomendation
 colMap, colText = st.columns([0.65, 0.35])
 with colMap :
-    mapEcoscope(st.session_state['kecamatan'])
-    index_kecamatan = kecamatanList.index(st.session_state.get("kecamatan"))
+    # mapEcoscope(st.session_state['kecamatan'])
+    # index_kecamatan = kecamatanList.index(st.session_state.get("kecamatan"))
+    pass
 with colText :
     if st.session_state.kecamatan == "Search Kecamatan":
         st.warning("Silahkan Pilih Kecamatan Terlebih dahulu")
@@ -42,40 +44,5 @@ with colText :
 st.title("Indeks Ekonomi")
 graphIndeksEkonomi(st.session_state['kecamatan'])
 
-# Div For DataFrame Table
-data = pd.DataFrame({
-    'Kecamatan': kecamatanList,
-    'Penduduk': np.random.randint(5000, 25000, size=len(kecamatanList)),
-    'Pendidikan': np.random.randint(5000, 25000, size=len(kecamatanList)),
-})
+tableEcoscope(st.session_state['kecamatan'])
 
-rows_per_page = 10
-total_pages = len(data) // rows_per_page + (1 if len(data) % rows_per_page > 0 else 0)
-
-if 'page' not in st.session_state:
-    st.session_state.page = 1
-
-start_idx = (st.session_state.page - 1) * rows_per_page
-end_idx = start_idx + rows_per_page
-current_data = data.iloc[start_idx:end_idx]
-
-st.dataframe(current_data, use_container_width=True)
-
-col1, col2, col3, col4, col5 = st.columns(5)
-with col1:
-    pass
-with col2:
-    if st.button("⬅️ Prev", key="prev_button", use_container_width=True, ) and st.session_state.page > 1:
-        st.session_state.page -= 1
-        st.rerun()
-with col3:
-    st.markdown(
-        f"<div style='text-align: center; font-weight: normal; padding-top:6px;'>Page {st.session_state.page} of {total_pages}</div>",
-        unsafe_allow_html=True
-    )   
-with col4:
-    if st.button("Next ➡️", key="next_button", use_container_width=True) and st.session_state.page < total_pages:
-        st.session_state.page += 1
-        st.rerun()
-with col5:
-    pass

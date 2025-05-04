@@ -1,7 +1,7 @@
 import streamlit as st
 from model import *
 
-ADOMobileconn = gsheet_ADOMobile_connection()
+ADOMobileconn = gsheet_ADOIH_connection()
 df = ADOMobileconn.read(ttl=2)
 
 def get_Kabupaten_data(): 
@@ -12,60 +12,61 @@ def get_Kabupaten_data():
         st.exception(e)
         return None
     
-def get_CB_data(): 
+def get_ListAktif_data(): 
     try:
-        return df['CB'].tolist()
+        return [f"{x:.3f}" for x in df['LIS AKTIF']]
     except Exception as e:
         st.error("Gagal mengambil gsheet.")
         st.exception(e)
         return None
     
-def get_Populasi_data(): 
+def get_TotalHousehold_data(): 
     try:
-        return df['POPULASI'].tolist()
+        return [f"{x:.3f}" for x in df['TOTAL HOUSEHOLD']]
     except Exception as e:
         st.error("Gagal mengambil gsheet.")
         st.exception(e)
         return None
     
-def get_FBShareREG_data(): 
+def get_PortAvail_data(): 
     try:
-        return df['FB SHARE REG'].tolist()
+        return [f"{x:.3f}" for x in df['PORT AVAILABLE']]
     except Exception as e:
         st.error("Gagal mengambil gsheet.")
         st.exception(e)
         return None
     
-def get_FBShareYouth_data(): 
+def get_TotalPort_data(): 
     try:
-        return df['FB SHARE YOUTH'].tolist()
+        return [f"{x:.3f}" for x in df['TOTAL PORT']]
     except Exception as e:
         st.error("Gagal mengambil gsheet.")
         st.exception(e)
         return None
     
-def get_OUTLETPJP_data(): 
+def get_WifiShare_data(): 
     try:
-        return df['OUTLET PJP'].tolist()
+        return df['WIFI SHARE'].tolist()
     except Exception as e:
         st.error("Gagal mengambil gsheet.")
         st.exception(e)
         return None
     
-def get_Arpu_data(): 
+def get_ODP_data(): 
     try:
-        return df['ARPU'].tolist()
+        return [f"{x:.3f}" for x in df['TOTAL ODP']]
     except Exception as e:
         st.error("Gagal mengambil gsheet.")
         st.exception(e)
         return None
     
-def get_Site_data(): 
+def get_CloseComp_data(): 
     try:
-        return df['SITE'].tolist()
+        return df['CLOSE COMP'].tolist()
     except Exception as e:
         st.error("Gagal mengambil gsheet.")
         st.exception(e)
         return None
 
 
+    
