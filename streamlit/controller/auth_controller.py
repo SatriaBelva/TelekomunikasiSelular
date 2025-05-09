@@ -49,7 +49,7 @@ def render_login_page():
     with col1:
         pass
     with col2:
-        st.markdown("### 🔑 Login Manual")
+        st.markdown("### Login Manual")
         email = st.text_input("Email")
         password = st.text_input("Password", type="password")
         if st.button("Login Manual"):

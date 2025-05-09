@@ -9,7 +9,7 @@ def table() :
         {   
             'Kabupaten'         : get_Kabupaten_data(),
             'Populasi'          : get_Populasi_data(),
-            'ARPU'              : get_Populasi_data(),
+            'ARPU'              : get_Arpu_data(),
             'CB'                : get_CB_data(),
             'Penetrasi CB'      : get_PenetrasiCB_data(),
             'Outlet PJP'        : get_OutletPJP_data(),

@@ -5,8 +5,8 @@ import os as os
 from controller import *
 from model import *
 
-st.write(get_account_data()["email"].tolist())
-st.write(get_account_data()["password"].tolist())
+# st.write(get_account_data()["email"].tolist())
+# st.write(get_account_data()["password"].tolist())
 
 if 'kecamatan' not in st.session_state:
     st.session_state['kecamatan'] = "Semua"
@@ -42,10 +42,10 @@ with colText :
     elif st.session_state.kecamatan == "Semua":
         with st.container(border=True, height=600):
             st.title(f"Kabupaten Jember")
-            # st.title(f"kec. {selected_kecamatan} desa {selected_desa}")
+            st.title(f"kec. {selected_kecamatan} desa {selected_desa}")
             st.caption("Rekomendasi")
 
-            query = f"Berikan rekomendasi pilihan paket internet pada {selected_Product} di kecamatan {selected_kecamatan} desa {selected_desa} berdasarkan jumlah penduduk, pendidikan dan pekerjaan yang ada disitu, dan berikan alasannya"
+            # query = f"Berikan rekomendasi pilihan paket internet pada {selected_Product} di kecamatan {selected_kecamatan} desa {selected_desa} berdasarkan jumlah penduduk, pendidikan dan pekerjaan yang ada disitu, dan berikan alasannya"
             # qa = load_chatbot()
 
             # if query:
@@ -56,9 +56,16 @@ with colText :
     elif st.session_state.kecamatan != "Search Kecamatan" and st.session_state.kecamatan != "Semua":
         with st.container(border=True, height=600):
             st.title(f"Kec. {st.session_state.kecamatan}")
-            st.caption(f'Indeks Pembangunan Manusia tergolong tinggi')
-            st.write(f'Rekomendasi :\n\nLorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat magnam provident, consequatur pariatur itaque tempore aspernatur voluptate recusandae deserunt odit earum optio in illo atque possimus ipsam sequi voluptatum magni.')
+            # st.title(f"kec. {selected_kecamatan} desa {selected_desa}")
+            st.caption("Rekomendasi")
 
+            # query = f"Berikan rekomendasi pilihan paket internet pada {selected_Product} di kecamatan {selected_kecamatan} desa {selected_desa} berdasarkan jumlah penduduk, pendidikan dan pekerjaan yang ada disitu, dan berikan alasannya"
+            # qa = load_chatbot()
+
+            # if query:
+            #     with st.spinner("SSABAR SUMPAHH RODOK LEMOTTTT"):
+            #         result = get_chatbot_response(qa, query)
+            
 st.title("Pendidikan")
 graphPendidikan(st.session_state['kecamatan'])
 
